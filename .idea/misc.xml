@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/grossmann.kundenauftrag.database/pom.xml" />
         <option value="$PROJECT_DIR$/grossmann.kundenauftrag.xml/pom.xml" />
         <option value="$PROJECT_DIR$/grossmann.kundenauftrag.domain/pom.xml" />
+        <option value="$PROJECT_DIR$/grossmann.kundenauftrag.program/pom.xml" />
       </list>
     </option>
   </component>

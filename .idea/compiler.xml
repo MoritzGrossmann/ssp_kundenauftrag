@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="grossmann.kundenauftrag.database" />
         <module name="grossmann.kundenauftrag.domain" />
+        <module name="grossmann.kundenauftrag.program" />
         <module name="grossmann.kundenauftrag.xml" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="grossmann.kundenauftrag.database" target="1.5" />
       <module name="grossmann.kundenauftrag.domain" target="1.5" />
+      <module name="grossmann.kundenauftrag.program" target="1.5" />
       <module name="grossmann.kundenauftrag.xml" target="1.5" />
     </bytecodeTargetLevel>
   </component>
