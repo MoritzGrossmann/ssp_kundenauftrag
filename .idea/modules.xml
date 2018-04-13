@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/grossmann.kundenauftrag.database/grossmann.kundenauftrag.database.iml" filepath="$PROJECT_DIR$/grossmann.kundenauftrag.database/grossmann.kundenauftrag.database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grossmann.kundenauftrag.domain/grossmann.kundenauftrag.domain.iml" filepath="$PROJECT_DIR$/grossmann.kundenauftrag.domain/grossmann.kundenauftrag.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grossmann.kundenauftrag.xml/grossmann.kundenauftrag.xml.iml" filepath="$PROJECT_DIR$/grossmann.kundenauftrag.xml/grossmann.kundenauftrag.xml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ssp_kundenauftrag.iml" filepath="$PROJECT_DIR$/.idea/ssp_kundenauftrag.iml" />
+    </modules>
+  </component>
+</project>
