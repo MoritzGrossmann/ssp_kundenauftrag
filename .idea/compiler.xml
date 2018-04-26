@@ -16,7 +16,7 @@
       <module name="grossmann.kundenauftrag.database" target="1.5" />
       <module name="grossmann.kundenauftrag.domain" target="1.5" />
       <module name="grossmann.kundenauftrag.program" target="1.5" />
-      <module name="grossmann.kundenauftrag.xml" target="1.5" />
+      <module name="grossmann.kundenauftrag.xml" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -10,8 +10,10 @@ import java.util.List;
 
 public class CustomOrderDataPersistence implements IPersistCustomerOrderData {
 
+    private static final String PERSISTENCE_UNIT = "customOrderDataPersistence";
+
     private EntityManager getDatabaseContext() {
-        return Persistence.createEntityManagerFactory("customOrderDatabase").createEntityManager();
+        return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT).createEntityManager();
     }
 
     public List<Customer> getCustomer() {

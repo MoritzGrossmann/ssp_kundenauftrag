@@ -1,15 +1,47 @@
 package model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
+@Table(name = "production_order", schema = "customerorder", catalog = "")
 public class ProductionOrder {
+    private int id;
+    private Order customerOrder;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name="prodOrderItems",
-            joinColumns=@JoinColumn(name="poID", referencedColumnName="poID"),
-            inverseJoinColumns=@JoinColumn(name="productID", referencedColumnName="pID"))
-    private List<Product> products;
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductionOrder that = (ProductionOrder) o;
+
+        if (id != that.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "customer_order_id", referencedColumnName = "id", nullable = false)
+    public Order getCustomerOrder() {
+        return customerOrder;
+    }
+
+    public void setCustomerOrder(Order customerOrder) {
+        this.customerOrder = customerOrder;
+    }
 }

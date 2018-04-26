@@ -1,0 +1,50 @@
+<ArrayOfCustomer xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/OLDB.Spa.Models.Api">
+    <Customer>
+        <Id>1</Id>
+        <Name>Max Mustermann</Name>
+        <CustomOrders>
+            <CustomOrder>
+                <Id>1<Id>
+                <DateTime>2017-08-18T20:30:00</DateTime>
+                <ProductionOrders>
+                    <ProductionOrder>1<ProductionOrder>
+                    <ProductionOrder>2<ProductionOrder>
+                    <ProductionOrder>3<ProductionOrder>
+                </ProductionOrders>
+            </CustomOrder>
+            <CustomOrder>
+                <Id>2</Id>
+                <DateTime>2017-09-18T20:30:00</DateTime>
+                <ProductionOrders>
+                    <ProductionOrder>4<ProductionOrder>
+                    <ProductionOrder>5<ProductionOrder>
+                    <ProductionOrder>6<ProductionOrder>
+                </ProductionOrders>
+            </CustomOrder>
+        </CustomOrders>
+    </Customer>
+    <Customer>
+        <Id>2</Id>
+        <Name>Jana Beispiel</Name>
+        <CustomOrders>
+            <CustomOrder>
+                <Id>3<Id>
+                <DateTime>2017-08-18T20:30:00</DateTime>
+                <ProductionOrders>
+                    <ProductionOrder>7<ProductionOrder>
+                    <ProductionOrder>8<ProductionOrder>
+                    <ProductionOrder>9<ProductionOrder>
+                </ProductionOrders>
+            </CustomOrder>
+            <CustomOrder>
+                <Id>4</Id>
+                <DateTime>2017-09-18T20:30:00</DateTime>
+                <ProductionOrders>
+                    <ProductionOrder>10<ProductionOrder>
+                    <ProductionOrder>11<ProductionOrder>
+                    <ProductionOrder>12<ProductionOrder>
+                </ProductionOrders>
+            </CustomOrder>
+        </CustomOrders>
+    </Customer>
+</ArrayOfCustomer>
