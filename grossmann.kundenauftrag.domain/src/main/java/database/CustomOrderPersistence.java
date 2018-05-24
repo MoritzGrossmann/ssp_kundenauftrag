@@ -4,7 +4,7 @@ import model.Customer;
 
 import java.util.List;
 
-public interface IPersistCustomerOrderData {
+public interface CustomOrderPersistence {
 
     /**
      * Returns all known Customers in the PErsistence

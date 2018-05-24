@@ -1,4 +1,4 @@
-import database.IPersistCustomerOrderData;
+import database.CustomOrderPersistence;
 import model.Customer;
 
 import javax.persistence.EntityManager;
@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class CustomOrderDataPersistence implements IPersistCustomerOrderData {
+public class CustomOrderDatabase implements CustomOrderPersistence {
 
     private static final String PERSISTENCE_UNIT = "customOrderDataPersistence";
 
