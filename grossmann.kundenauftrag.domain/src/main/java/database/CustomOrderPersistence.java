@@ -12,12 +12,14 @@ public interface CustomOrderPersistence {
      */
     List<Customer> getCustomer();
 
+    List<Customer> getCustomer(String namePart);
     /**
      * Returns a single Customer with id = @id from the Persistence
      * @param id
      * @return
      */
     Customer getCustomer(int id);
+
 
     Customer persistCustomer(Customer customer);
 
