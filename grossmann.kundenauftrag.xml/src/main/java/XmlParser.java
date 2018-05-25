@@ -1,4 +1,6 @@
+import xml.ParseXmlException;
+
 public interface XmlParser<T> {
 
-    T parse();
+    T parse() throws ParseXmlException;
 }
