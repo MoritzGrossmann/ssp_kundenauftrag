@@ -49,7 +49,7 @@ public class Customer {
         return result;
     }
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.PERSIST)
     public Collection<Order> getOrders() {
         return orders;
     }

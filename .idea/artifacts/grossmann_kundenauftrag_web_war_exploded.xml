@@ -6,8 +6,24 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="grossmann.kundenauftrag.web" />
+          <element id="module-output" name="grossmann.kundenauftrag.database" />
+          <element id="module-output" name="grossmann.kundenauftrag.domain" />
+          <element id="module-output" name="grossmann.kundenauftrag.xml" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa:2.7.1" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:javax.persistence:2.2.0" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.asm:2.7.1" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.antlr:2.7.1" />
+          <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.0.4" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.7.1" />
+          <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.7.1" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.1" />
+          <element id="library" level="project" name="Maven: org.jdom:jdom2:2.0.6" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.21" />
         </element>
       </element>
+      <element id="jpa-descriptors" facet="grossmann.kundenauftrag.database/jpa/JPA" />
     </root>
   </artifact>
 </component>

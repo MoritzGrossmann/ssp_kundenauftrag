@@ -62,7 +62,7 @@ public class Order {
         this.customer = customer;
     }
 
-    @OneToMany(mappedBy = "customerOrder")
+    @OneToMany(mappedBy = "customerOrder", cascade = CascadeType.PERSIST)
     public Collection<ProductionOrder> getProductionOrders() {
         return productionOrders;
     }

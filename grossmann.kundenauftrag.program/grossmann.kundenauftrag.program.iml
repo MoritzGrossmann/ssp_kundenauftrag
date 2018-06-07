@@ -20,7 +20,7 @@
     <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.7.1" level="project" />
     <orderEntry type="module" module-name="grossmann.kundenauftrag.database" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:6.0.6" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.21" level="project" />
     <orderEntry type="module" module-name="grossmann.kundenauftrag.xml" />
     <orderEntry type="library" name="Maven: org.jdom:jdom2:2.0.6" level="project" />
   </component>

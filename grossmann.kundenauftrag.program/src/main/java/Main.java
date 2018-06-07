@@ -1,13 +1,12 @@
-import database.CustomOrderPersistence;
+import database.CustomerRepository;
+import database.Repository;
 import model.Customer;
 import model.Order;
 import model.ProductionOrder;
-import org.jdom2.Element;
 import xml.CustomerImporter;
 import xml.ParseXmlException;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -16,7 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Application is starting...");
-        CustomOrderPersistence persistence = new CustomOrderDatabase();
+
+        Repository<Customer> customerRepository = new CustomerRepository();
 
         CustomerImporter customerImporter = new CustomerXmlImporter();
 
@@ -31,7 +31,7 @@ public class Main {
                         p.setCustomerOrder(o);
                     }
                 }
-                persistence.persistCustomer(c);
+                customerRepository.insert(c);
             }
 
         } catch (ParseXmlException e) {

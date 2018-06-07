@@ -11,6 +11,8 @@ import java.util.Collection;
 
 public class OrderParser implements XmlParser<Order> {
 
+    private static final String DATETIME_XML_PROPERTY = "DateTime";
+
     public OrderParser(Element xmlOrder) {
         this.element = xmlOrder;
     }
@@ -25,7 +27,7 @@ public class OrderParser implements XmlParser<Order> {
         String xmlId = this.element.getChildText("Id", this.element.getNamespace());
 
         order.setId(parseInt(xmlId));
-        order.setDateTime(parseDateTime(this.element.getChildText("DateTime", this.element.getNamespace())));
+        order.setDateTime(parseDateTime(this.element.getChildText(DATETIME_XML_PROPERTY, this.element.getNamespace())));
 
         Collection<ProductionOrder> productionOrders = new ArrayList<>();
 
