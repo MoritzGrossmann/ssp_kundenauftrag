@@ -5,15 +5,23 @@ import java.sql.Date;
 import java.util.Collection;
 
 @Entity
-@Table(name = "customer_order", schema = "customerorder", catalog = "")
+@Table(name = "customer_order", schema = "customerorder")
 public class Order {
-    private int id;
-    private Date dateTime;
-    private Customer customer;
-    private Collection<ProductionOrder> productionOrders;
-
     @Id
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "date_time")
+    private Date dateTime;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
+    private Customer customer;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Collection<ProductionOrder> productionOrders;
+
     public int getId() {
         return id;
     }
@@ -22,8 +30,7 @@ public class Order {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "date_time")
+
     public Date getDateTime() {
         return dateTime;
     }
@@ -40,9 +47,7 @@ public class Order {
         Order order = (Order) o;
 
         if (id != order.id) return false;
-        if (dateTime != null ? !dateTime.equals(order.dateTime) : order.dateTime != null) return false;
-
-        return true;
+        return dateTime != null ? dateTime.equals(order.dateTime) : order.dateTime == null;
     }
 
     @Override
@@ -52,8 +57,6 @@ public class Order {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     public Customer getCustomer() {
         return customer;
     }
@@ -62,7 +65,7 @@ public class Order {
         this.customer = customer;
     }
 
-    @OneToMany(mappedBy = "customerOrder", cascade = CascadeType.PERSIST)
+
     public Collection<ProductionOrder> getProductionOrders() {
         return productionOrders;
     }

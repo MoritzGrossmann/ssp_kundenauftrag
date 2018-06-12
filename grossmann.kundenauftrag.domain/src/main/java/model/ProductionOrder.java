@@ -1,21 +1,37 @@
 package model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-@Table(name = "production_order", schema = "customerorder", catalog = "")
+@Table(name = "production_order", schema = "customerorder")
 public class ProductionOrder {
-    private int id;
-    private Order customerOrder;
 
     @Id
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "customer_order_id")
+    private int customerOrderId;
+
+    @ManyToMany(mappedBy = "productionOrders", cascade = CascadeType.PERSIST)
+    private Collection<Order> orders;
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCustomerOrderId() {
+        return customerOrderId;
+    }
+
+    public void setCustomerOrderId(int customerOrderId) {
+        this.customerOrderId = customerOrderId;
     }
 
     @Override
@@ -25,21 +41,23 @@ public class ProductionOrder {
 
         ProductionOrder that = (ProductionOrder) o;
 
-        return id == that.id;
+        if (id != that.id) return false;
+        return customerOrderId == that.customerOrderId;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result = id;
+        result = 31 * result + customerOrderId;
+        return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "customer_order_id", referencedColumnName = "id", nullable = false)
-    public Order getCustomerOrder() {
-        return customerOrder;
+
+    public Collection<Order> getOrders() {
+        return this.orders;
     }
 
-    public void setCustomerOrder(Order customerOrder) {
-        this.customerOrder = customerOrder;
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
     }
 }
