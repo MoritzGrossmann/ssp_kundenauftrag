@@ -26,14 +26,6 @@ public class ProductionOrder {
         this.id = id;
     }
 
-    public int getCustomerOrderId() {
-        return customerOrderId;
-    }
-
-    public void setCustomerOrderId(int customerOrderId) {
-        this.customerOrderId = customerOrderId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

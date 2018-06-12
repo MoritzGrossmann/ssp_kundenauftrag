@@ -26,8 +26,6 @@ public class StartUp {
         try {
             List<Customer> customers = customerImporter.readFile(new File("D:\\Moritz\\Projekt\\Java\\IntelliJ\\ssp_kundenauftrag\\grossmann.kundenauftrag.xml\\src\\main\\resources\\customer.xml"));
             customers.forEach(c -> {
-                c.getOrders().forEach(o -> o.setCustomer(c));
-
                 if (customerRepository.getById(c.getId()) == null)
                     customerRepository.insert(c);
             });

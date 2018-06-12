@@ -27,6 +27,8 @@ public class CustomerParser implements XmlParser<Customer> {
         }
 
         customer.setOrders(orders);
+
+        customer.getOrders().forEach(o -> o.setCustomer(customer));
         return customer;
     }
 }
