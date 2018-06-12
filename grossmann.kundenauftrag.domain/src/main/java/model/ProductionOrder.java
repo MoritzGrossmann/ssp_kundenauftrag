@@ -25,9 +25,7 @@ public class ProductionOrder {
 
         ProductionOrder that = (ProductionOrder) o;
 
-        if (id != that.id) return false;
-
-        return true;
+        return id == that.id;
     }
 
     @Override

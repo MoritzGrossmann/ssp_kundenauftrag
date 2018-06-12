@@ -2,17 +2,19 @@
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
-    <persistence-unit name="customOrderDataPersistence" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="customOrderDataPersistence" transaction-type="JTA">
+        <jta-data-source>jdbc/customerOrder</jta-data-source>
         <class>model.Customer</class>
         <class>model.ProductionOrder</class>
         <class>model.Order</class>
         <properties>
             <property name="eclipselink.ddl-generation" value="create-tables"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/customerorder"/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.user" value="customer"/>
-            <property name="javax.persistence.jdbc.password" value="customer"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="database" />
+            <property name="eclipselink.deploy-on-startup" value="true"/>
+            <property name="eclipselink.target-server" value="Glassfish"/>
+            <property name="eclipselink.logging.level" value="FINEST"/>
         </properties>
 
     </persistence-unit>
 </persistence>
+

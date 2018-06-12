@@ -5,11 +5,31 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-<f:metadata>
-    <f:viewParam id="id" name="customerId"
-                 value="#{customerOrderBean.id}" /></f:metadata>
+    <h:body>
+        <ui:composition template="shared/_layout.xhtml">
+            <ui:define name="content">
+                <h:form id="form">
+                    <p:repeat value="#{customerBean.customer}" var="customer">
+                        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                                <p:graphicImage name="http://www.tntwestsoccer.com/no-image-available-300x300/" />
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputText value="Id:" />
+                                    <h:outputText value="#{customer.id}" style="font-weight: bold"/>
 
-<f:view>
-    <h:outputLabel value="${customerOrderBean.customer.name}"/>
-</f:view>
+                                    <h:outputText value="Name:" />
+                                    <h:outputText value="#{customer.name}" style="font-weight: bold"/>
+
+                                    <h:link value="Details" outcome="customer-detail">
+                                        <f:param value="#{customer.id}" name="id"/>
+                                    </h:link>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                        </h:panelGrid>
+                        <hr />
+                    </p:repeat>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>

@@ -21,9 +21,14 @@
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.1" />
           <element id="library" level="project" name="Maven: org.jdom:jdom2:2.0.6" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.21" />
+          <element id="library" level="project" name="PrimeFaces-6.1" />
+          <element id="library" level="project" name="Maven: javax:javaee-api:8.0" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.0" />
         </element>
       </element>
       <element id="jpa-descriptors" facet="grossmann.kundenauftrag.database/jpa/JPA" />
+      <element id="javaee-facet-resources" facet="grossmann.kundenauftrag.web/ejb/EJB" />
     </root>
   </artifact>
 </component>

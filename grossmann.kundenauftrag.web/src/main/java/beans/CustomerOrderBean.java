@@ -1,15 +1,16 @@
 package beans;
 
-import database.CustomerRepository;
-import database.Repository;
-import model.Customer;
+import database.OrderRepository;
+import model.Order;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
 
-@ManagedBean(name = "customerOrderBean")
-@RequestScoped
+@ManagedBean(name = "customerOrderBean", eager = true)
 public class CustomerOrderBean {
+
+    @Inject
+    OrderRepository orderRepository;
 
     private int id;
 
@@ -21,10 +22,11 @@ public class CustomerOrderBean {
         this.id = id;
     }
 
-    private Customer customer;
+    private Order order;
 
-    public Customer getCustomer() {
-        Repository<Customer> customerRepository = new CustomerRepository();
-        return customerRepository.getById(this.id);
+    public Order getOrder() {
+        if (this.order == null || this.id != this.order.getId())
+            this.order = orderRepository.getById(this.id);
+        return this.order;
     }
 }

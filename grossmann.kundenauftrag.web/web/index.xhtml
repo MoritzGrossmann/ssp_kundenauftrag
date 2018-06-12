@@ -5,21 +5,9 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-   <f:view>
-      <p:outputLabel value="Hello, world"/>
-      <h:dataTable var="customer" value="${customerBean.customer}" class="table">
-         <h:column>
-            <f:facet name="header">Id</f:facet>
-            <p:outputLabel value="${customer.id}"/>
-         </h:column>
+<h:body>
+   <ui:composition template="shared/_layout.xhtml">
 
-         <h:column>
-            <f:facet name="header">Name</f:facet>
-
-            <h:link value="${customer.name}" outcome="customer">
-               <f:param name="customerId" value="${customer.id}"/>
-            </h:link>
-         </h:column>
-      </h:dataTable>
-   </f:view>
+   </ui:composition>
+</h:body>
 </html>
