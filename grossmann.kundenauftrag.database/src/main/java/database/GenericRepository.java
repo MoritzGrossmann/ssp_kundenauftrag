@@ -1,25 +1,31 @@
 package database;
 
+import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import java.io.Serializable;
 import java.util.List;
 
-public class GenericRepository<T> implements Repository<T> {
+@Named
+@Stateless
+public class GenericRepository<T> implements Repository<T>, Serializable {
 
     private static final String PERSISTENCE_UNIT = "customOrderDataPersistence";
 
-    //@PersistenceContext
+    @PersistenceContext(name = PERSISTENCE_UNIT)
     private EntityManager entityManager;
 
     private Class<T> type;
 
     public GenericRepository(Class<T> type) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-        this.entityManager = entityManagerFactory.createEntityManager();
         this.type = type;
+    }
+
+    public GenericRepository() {
+
     }
 
     protected EntityManager getEntityManager() {
@@ -46,6 +52,6 @@ public class GenericRepository<T> implements Repository<T> {
     }
 
     public void update(T item) {
-
+        entityManager.merge(item);
     }
 }

@@ -167,7 +167,7 @@ public class Customer {
         return result;
     }
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     public Collection<Order> getOrders() {
         return orders;
     }

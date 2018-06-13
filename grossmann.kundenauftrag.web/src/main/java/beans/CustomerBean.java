@@ -3,14 +3,15 @@ package beans;
 import database.CustomerRepository;
 import model.Customer;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean(name = "customerBean", eager = true)
 public class CustomerBean {
 
-    @Inject
+    @EJB
+    private
     CustomerRepository customerRepository;
 
     private List<Customer> customer;

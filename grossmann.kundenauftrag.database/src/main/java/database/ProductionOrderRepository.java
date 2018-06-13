@@ -1,14 +1,14 @@
 package database;
 
-import model.Order;
+import model.ProductionOrder;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 import javax.inject.Named;
 
 @Named
-@ApplicationScoped
-public class ProductionOrderRepository extends GenericRepository<Order> {
+@Stateless
+public class ProductionOrderRepository extends GenericRepository<ProductionOrder> {
     public ProductionOrderRepository() {
-        super(Order.class);
+        super(ProductionOrder.class);
     }
 }

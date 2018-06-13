@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -11,11 +12,7 @@ public class ProductionOrder {
     @Column(name = "id")
     private int id;
 
-    @Basic
-    @Column(name = "customer_order_id")
-    private int customerOrderId;
-
-    @ManyToMany(mappedBy = "productionOrders", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "productionOrders", cascade = CascadeType.ALL)
     private Collection<Order> orders;
 
     public int getId() {
@@ -33,15 +30,21 @@ public class ProductionOrder {
 
         ProductionOrder that = (ProductionOrder) o;
 
-        if (id != that.id) return false;
-        return customerOrderId == that.customerOrderId;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + customerOrderId;
+        result = 31 * result;
         return result;
+    }
+
+    public void addOrder(Order order) {
+        if (this.orders == null)
+            this.orders = new ArrayList<Order>();
+
+        this.orders.add(order);
     }
 
 

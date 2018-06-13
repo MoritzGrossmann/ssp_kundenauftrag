@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -19,7 +20,7 @@ public class Order {
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.ALL)
     private Collection<ProductionOrder> productionOrders;
 
     public int getId() {
@@ -65,6 +66,11 @@ public class Order {
         this.customer = customer;
     }
 
+    public void addProductionOrder(ProductionOrder productionOrder) {
+        if (this.productionOrders == null)
+            this.productionOrders = new ArrayList<ProductionOrder>();
+        this.productionOrders.add(productionOrder);
+    }
 
     public Collection<ProductionOrder> getProductionOrders() {
         return productionOrders;

@@ -2,11 +2,11 @@ package database;
 
 import model.Customer;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 import javax.inject.Named;
 
 @Named
-@ApplicationScoped
+@Stateless
 public class CustomerRepository extends GenericRepository<Customer> {
     public CustomerRepository() {
         super(Customer.class);
