@@ -9,11 +9,14 @@ import java.util.Collection;
 public class ProductionOrder {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @ManyToMany(mappedBy = "productionOrders", cascade = CascadeType.ALL)
-    private Collection<Order> orders;
+    @ManyToMany(mappedBy = "productionOrders")
+    private Collection<Order> orders = new ArrayList<Order>();
+
+    //region Getter and Setter
 
     public int getId() {
         return id;
@@ -22,6 +25,16 @@ public class ProductionOrder {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Collection<Order> getOrders() {
+        return this.orders;
+    }
+
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
+    }
+
+    //endregion
 
     @Override
     public boolean equals(Object o) {
@@ -41,18 +54,12 @@ public class ProductionOrder {
     }
 
     public void addOrder(Order order) {
-        if (this.orders == null)
-            this.orders = new ArrayList<Order>();
-
         this.orders.add(order);
+        order.getProductionOrders().add(this);
     }
 
-
-    public Collection<Order> getOrders() {
-        return this.orders;
-    }
-
-    public void setOrders(Collection<Order> orders) {
-        this.orders = orders;
+    @Override
+    public String toString() {
+        return String.valueOf(this.id);
     }
 }

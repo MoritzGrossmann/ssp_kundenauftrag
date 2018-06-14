@@ -8,7 +8,9 @@ import java.util.Collection;
 @Entity
 @Table(name = "customer_order", schema = "customerorder")
 public class Order {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -20,8 +22,11 @@ public class Order {
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Collection<ProductionOrder> productionOrders;
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "cust_prod_order", joinColumns = @JoinColumn(name = "customer_order_id"), inverseJoinColumns = @JoinColumn(name = "production_order_id"))
+    private Collection<ProductionOrder> productionOrders = new ArrayList<ProductionOrder>();
+
+    //region Getter and Setter
 
     public int getId() {
         return id;
@@ -31,7 +36,6 @@ public class Order {
         this.id = id;
     }
 
-
     public Date getDateTime() {
         return dateTime;
     }
@@ -39,6 +43,24 @@ public class Order {
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Collection<ProductionOrder> getProductionOrders() {
+        return productionOrders;
+    }
+
+    public void setProductionOrders(Collection<ProductionOrder> productionOrders) {
+        this.productionOrders = productionOrders;
+    }
+
+    //endregion
 
     @Override
     public boolean equals(Object o) {
@@ -58,25 +80,9 @@ public class Order {
         return result;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public void addProductionOrder(ProductionOrder productionOrder) {
-        if (this.productionOrders == null)
-            this.productionOrders = new ArrayList<ProductionOrder>();
         this.productionOrders.add(productionOrder);
+        productionOrder.getOrders().add(this);
     }
 
-    public Collection<ProductionOrder> getProductionOrders() {
-        return productionOrders;
-    }
-
-    public void setProductionOrders(Collection<ProductionOrder> productionOrders) {
-        this.productionOrders = productionOrders;
-    }
 }

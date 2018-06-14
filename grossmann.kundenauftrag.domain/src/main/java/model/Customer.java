@@ -1,25 +1,63 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
+@Table(name = "customer")
 public class Customer {
-    private int id;
-    private String name;
-    private String telefonPrivate;
-    private String telefonMobile;
-    private String fax;
-    private String email;
-    private String street;
-    private String houseNumber;
-    private String postcode;
-    private String city;
-    private String country;
-    private Collection<Order> orders;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "name")
+    private String name;
+
+    @Basic
+    @Column(name = "telefon_private")
+    private String telefonPrivate;
+
+    @Basic
+    @Column(name = "telefon_mobile")
+    private String telefonMobile;
+
+    @Basic
+    @Column(name = "fax")
+    private String fax;
+
+    @Basic
+    @Column(name = "email")
+    private String email;
+
+    @Basic
+    @Column(name = "street")
+    private String street;
+
+    @Basic
+    @Column(name = "house_number")
+    private String houseNumber;
+
+    @Basic
+    @Column(name = "postcode")
+    private String postcode;
+
+    @Basic
+    @Column(name = "city")
+    private String city;
+
+    @Basic
+    @Column(name = "country")
+    private String country;
+
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Collection<Order> orders = new ArrayList<Order>();
+
+    //region Getter and Setter
+
     public int getId() {
         return id;
     }
@@ -28,8 +66,6 @@ public class Customer {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -38,8 +74,6 @@ public class Customer {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "telefon_private")
     public String getTelefonPrivate() {
         return telefonPrivate;
     }
@@ -48,8 +82,6 @@ public class Customer {
         this.telefonPrivate = telefonPrivate;
     }
 
-    @Basic
-    @Column(name = "telefon_mobile")
     public String getTelefonMobile() {
         return telefonMobile;
     }
@@ -58,8 +90,6 @@ public class Customer {
         this.telefonMobile = telefonMobile;
     }
 
-    @Basic
-    @Column(name = "fax")
     public String getFax() {
         return fax;
     }
@@ -68,8 +98,6 @@ public class Customer {
         this.fax = fax;
     }
 
-    @Basic
-    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -78,8 +106,6 @@ public class Customer {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "street")
     public String getStreet() {
         return street;
     }
@@ -88,8 +114,6 @@ public class Customer {
         this.street = street;
     }
 
-    @Basic
-    @Column(name = "house_number")
     public String getHouseNumber() {
         return houseNumber;
     }
@@ -98,8 +122,6 @@ public class Customer {
         this.houseNumber = houseNumber;
     }
 
-    @Basic
-    @Column(name = "postcode")
     public String getPostcode() {
         return postcode;
     }
@@ -108,8 +130,6 @@ public class Customer {
         this.postcode = postcode;
     }
 
-    @Basic
-    @Column(name = "city")
     public String getCity() {
         return city;
     }
@@ -118,8 +138,6 @@ public class Customer {
         this.city = city;
     }
 
-    @Basic
-    @Column(name = "country")
     public String getCountry() {
         return country;
     }
@@ -127,6 +145,16 @@ public class Customer {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public Collection<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
+    }
+
+    //endregion
 
     @Override
     public boolean equals(Object o) {
@@ -166,13 +194,8 @@ public class Customer {
         result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
     }
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    public Collection<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Collection<Order> orders) {
-        this.orders = orders;
+    public void addOrder(Order order) {
+        orders.add(order);
+        order.setCustomer(this);
     }
 }

@@ -20,9 +20,10 @@
             <h:form>
                 <p:growl id="messages"/>
                 <p:menubar styleClass="navbar">
-                    <p:menuitem value="Customer" icon="ui-icon-document" outcome="customer"/>
-
-
+                    <p:submenu label="Customer" icon="ui-icon-pencil">
+                        <p:menuitem value="Show All" icon="ui-icon-document" outcome="customer"/>
+                        <p:menuitem value="Create" icon="ui-icon-pencil" outcome="customer-create"/>
+                    </p:submenu>
                     <p:submenu label="Edit" icon="ui-icon-pencil">
                         <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
                         <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />

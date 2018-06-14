@@ -13,6 +13,10 @@ public class OrderParser implements XmlParser<Order> {
 
     private static final String DATETIME_XML_PROPERTY = "DateTime";
 
+    private static final String PRODUCTION_ORDERS_XML_PROPERTY = "ProductionOrders";
+
+    private static final String PRODUCTION_ORDER_XML_PROPERTY = "ProductionOrder";
+
     public OrderParser(Element xmlOrder) {
         this.element = xmlOrder;
     }
@@ -31,13 +35,12 @@ public class OrderParser implements XmlParser<Order> {
 
         Collection<ProductionOrder> productionOrders = new ArrayList<>();
 
-        Element xmlProductionOrders = this.element.getChild("ProductionOrders", this.element.getNamespace());
+        Element xmlProductionOrders = this.element.getChild(PRODUCTION_ORDERS_XML_PROPERTY, this.element.getNamespace());
 
-        for (Element xmlProductionOrder : xmlProductionOrders.getChildren("ProductionOrder", xmlProductionOrders.getNamespace())) {
-            productionOrders.add(new ProductionOrderParser(xmlProductionOrder).parse());
+        for (Element xmlProductionOrder : xmlProductionOrders.getChildren(PRODUCTION_ORDER_XML_PROPERTY, xmlProductionOrders.getNamespace())) {
+            order.addProductionOrder(new ProductionOrderParser(xmlProductionOrder).parse());
         }
 
-        order.setProductionOrders(productionOrders);
         return order;
     }
 

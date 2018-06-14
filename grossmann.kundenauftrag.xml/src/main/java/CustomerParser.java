@@ -1,10 +1,6 @@
 import model.Customer;
-import model.Order;
 import org.jdom2.Element;
 import xml.ParseXmlException;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class CustomerParser implements XmlParser<Customer> {
 
@@ -60,17 +56,12 @@ public class CustomerParser implements XmlParser<Customer> {
         customer.setFax(contact.getChildText(FAX_XML_PROPERTY, contact.getNamespace()));
         customer.setCountry(contact.getChildText(COUNTRY_XML_PROPERTY, contact.getNamespace()));
 
-        Collection<Order> orders = new ArrayList<>();
 
         Element customerOrders = this.element.getChild(CUSTOMER_ORDERS_XML_PROPERTY, this.element.getNamespace());
 
         for (Element xmlOrder : customerOrders.getChildren(CUSTOMER_ORDER_XML_PROPERTY, customerOrders.getNamespace())) {
-            orders.add(new OrderParser(xmlOrder).parse());
+            customer.addOrder(new OrderParser(xmlOrder).parse());
         }
-
-        customer.setOrders(orders);
-
-        customer.getOrders().forEach(o -> o.setCustomer(customer));
         return customer;
     }
 }
