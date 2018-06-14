@@ -48,7 +48,7 @@ public class GenericRepository<T> implements Repository<T>, Serializable {
     }
 
     public void delete(T item) {
-
+        entityManager.remove(item);
     }
 
     public void update(T item) {

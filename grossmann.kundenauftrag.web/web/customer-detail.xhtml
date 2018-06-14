@@ -15,7 +15,38 @@
     <h:body>
         <ui:composition template="shared/_layout.xhtml">
             <ui:define name="content">
-                <h1><h:outputText value="#{customerDetailBean.customer.name}"/></h1>
+                <p:toolbar>
+                    <p:toolbarGroup align="left">
+                        <p:outputLabel value="${customerDetailBean.customer.name}" />
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                <p:separator />
+
+                    <p:panelGrid columns="2" cellpadding="30">
+                        <p:panelGrid columns="2" cellpadding="5">
+                            <p:outputLabel value="Street:" />
+                            <h:outputText value="#{customerDetailBean.customer.street}" style="font-weight: bold"/>
+
+                            <p:outputLabel value="HouseNumber:" />
+                            <h:outputText value="#{customerDetailBean.customer.houseNumber}" style="font-weight: bold"/>
+
+                            <p:outputLabel value="Postcode:" />
+                            <h:outputText value="#{customerDetailBean.customer.postcode}" style="font-weight: bold"/>
+
+                            <p:outputLabel value="City:" />
+                            <h:outputText value="#{customerDetailBean.customer.city}" style="font-weight: bold"/>
+
+                            <p:outputLabel value="Country:" />
+                            <h:outputText value="#{customerDetailBean.customer.country}" style="font-weight: bold"/>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" cellpadding="5">
+
+                        </p:panelGrid>
+                    </p:panelGrid>
+
+                <p:separator />
+
                 <p:dataTable var="order" value="#{customerDetailBean.customer.orders}">
                     <f:facet name="header">
                         Orders
@@ -34,6 +65,10 @@
                         </h:link>
                     </p:column>
                 </p:dataTable>
+
+                <p:link outcome="customer-create" value="edit">
+                    <f:param name="id" value="#{customerDetailBean.id}" />
+                </p:link>
             </ui:define>
         </ui:composition>
     </h:body>

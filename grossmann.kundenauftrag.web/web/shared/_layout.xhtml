@@ -11,7 +11,7 @@
 </h:head>
 
 <h:body>
-    <div id="page">
+    <div id="page" class="container">
         <div id="header">
             <ui:insert name="header" >
                 <ui:include src="/shared/navbar.xhtml" />
@@ -19,11 +19,9 @@
         </div>
 
         <div id="content">
-            <div class="container">
                 <ui:insert name="content" >
 
                 </ui:insert>
-            </div>
         </div>
 
         <div id="footer">
@@ -33,6 +31,45 @@
         </div>
 
     </div>
+    <style type="text/css">
+
+
+          .navbar {
+              margin-bottom: 10px;
+          }
+
+        input {
+            min-width: 300px;
+        }
+
+        @media (min-width: 576px) {
+            .container {
+                margin-left: 0%;
+                margin-right: 0%;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                margin-left: 15%;
+                margin-right: 15%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                margin-left: 20%;
+                margin-right: 20%;
+            }
+        }
+    </style>
 </h:body>
 
 </html>

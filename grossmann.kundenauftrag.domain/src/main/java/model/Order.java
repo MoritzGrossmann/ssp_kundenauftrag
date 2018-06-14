@@ -22,8 +22,7 @@ public class Order {
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "cust_prod_order", joinColumns = @JoinColumn(name = "customer_order_id"), inverseJoinColumns = @JoinColumn(name = "production_order_id"))
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<ProductionOrder> productionOrders = new ArrayList<ProductionOrder>();
 
     //region Getter and Setter
@@ -82,7 +81,7 @@ public class Order {
 
     public void addProductionOrder(ProductionOrder productionOrder) {
         this.productionOrders.add(productionOrder);
-        productionOrder.getOrders().add(this);
+        productionOrder.setOrder(this);
     }
 
 }

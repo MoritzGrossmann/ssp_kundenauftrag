@@ -8,6 +8,10 @@
       xmlns:p="http://primefaces.org/ui">
 
 
+    <f:metadata>
+        <f:viewParam id="id" name="id" value="#{customerCreateBean.id}" />
+    </f:metadata>
+
     <h:body>
         <ui:composition template="shared/_layout.xhtml">
             <ui:define name="content">
@@ -20,15 +24,53 @@
 
                 <h:form>
 
-                <h:panelGrid columns="2" cellpadding="5">
+                <p:growl id="msg" />
+
+                <h:panelGrid columns="3" cellpadding="5" id="grid">
                     <p:outputLabel value="Name:"/>
-                    <p:inputText value="#{customerCreateBean.customer.name}"/>
+                    <p:inputText id="name" value="#{customerCreateBean.customer.name}" required="true"/>
+                    <p:message for="name" />
 
                     <p:outputLabel value="Email:" />
-                    <p:inputText value="#{customerCreateBean.customer.email}"/>
+                    <p:inputText id="email" value="#{customerCreateBean.customer.email}" required="true"/>
+                    <p:message for="email" />
+
+                    <p:outputLabel value="Street:" />
+                    <p:inputText id="street" value="#{customerCreateBean.customer.street}" />
+                    <p:message for="street" />
+
+                    <p:outputLabel value="HouseNumber:" />
+                    <p:inputText value="#{customerCreateBean.customer.houseNumber}"/>
+                    <p:message for="street" />
+
+                    <p:outputLabel value="Postcode:" />
+                    <p:inputText value="#{customerCreateBean.customer.postcode}"/>
+                    <p:message for="street" />
+
+                    <p:outputLabel value="City:" />
+                    <p:inputText value="#{customerCreateBean.customer.city}"/>
+                    <p:message for="street" />
+
+                    <p:outputLabel value="Country:" />
+                    <p:inputText value="#{customerCreateBean.customer.country}"/>
+                    <p:message for="street" />
+
+                    <p:outputLabel value="Telefon Private:" />
+                    <p:inputText value="#{customerCreateBean.customer.telefonPrivate}"/>
+                    <p:message for="street" />
+
+                    <p:outputLabel value="Telefon Mobile:" />
+                    <p:inputText value="#{customerCreateBean.customer.telefonMobile}"/>
+                    <p:message for="street" />
+
+                    <p:outputLabel value="Fax:" />
+                    <p:inputText value="#{customerCreateBean.customer.fax}"/>
+                    <p:message for="street" />
                 </h:panelGrid>
 
-                <p:commandButton value="Submit" icon="ui-icon-check" action="#{customerCreateBean.submit()}"/>
+                <p:commandButton value="Submit" icon="ui-icon-check" action="#{customerCreateBean.submit()}" update="grid">
+                        <p:ajax update="msg" listener="#{customerCreateBean.submit}"/>
+                </p:commandButton>
                 </h:form>
             </ui:define>
         </ui:composition>

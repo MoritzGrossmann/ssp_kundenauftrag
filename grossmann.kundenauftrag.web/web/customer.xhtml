@@ -8,6 +8,12 @@
     <h:body>
         <ui:composition template="shared/_layout.xhtml">
             <ui:define name="content">
+
+                <p:toolbar>
+                    <p:toolbarGroup align="left">
+                        <p:outputLabel value="Customer" />
+                    </p:toolbarGroup>
+                </p:toolbar>
                 <h:form id="form">
                     <p:repeat value="#{customerBean.customer}" var="customer">
                         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
@@ -19,11 +25,17 @@
                                     <h:outputText value="Name:" />
                                     <h:outputText value="#{customer.name}" style="font-weight: bold"/>
 
-                                    <h:link value="Details" outcome="customer-detail">
-                                        <f:param value="#{customer.id}" name="id"/>
-                                    </h:link>
+                                    <h:outputText value="Email:" />
+                                    <h:outputText value="#{customer.email}" style="font-weight: bold"/>
+
+
+
                                 </h:panelGrid>
                             </p:outputPanel>
+                            <h:link title="View Detail" outcome="customer-detail">
+                                <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                                <f:param value="#{customer.id}" name="id"/>
+                            </h:link>
                         </h:panelGrid>
                         <hr />
                     </p:repeat>

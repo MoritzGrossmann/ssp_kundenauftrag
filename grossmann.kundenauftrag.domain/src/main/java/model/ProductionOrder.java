@@ -13,8 +13,9 @@ public class ProductionOrder {
     @Column(name = "id")
     private int id;
 
-    @ManyToMany(mappedBy = "productionOrders")
-    private Collection<Order> orders = new ArrayList<Order>();
+    @ManyToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
+    private Order order;
 
     //region Getter and Setter
 
@@ -26,12 +27,12 @@ public class ProductionOrder {
         this.id = id;
     }
 
-    public Collection<Order> getOrders() {
-        return this.orders;
+    public Order getOrder() {
+        return this.order;
     }
 
-    public void setOrders(Collection<Order> orders) {
-        this.orders = orders;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     //endregion
@@ -51,11 +52,6 @@ public class ProductionOrder {
         int result = id;
         result = 31 * result;
         return result;
-    }
-
-    public void addOrder(Order order) {
-        this.orders.add(order);
-        order.getProductionOrders().add(this);
     }
 
     @Override
