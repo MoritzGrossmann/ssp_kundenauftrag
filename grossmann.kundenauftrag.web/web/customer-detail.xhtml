@@ -9,22 +9,20 @@
 
 
     <f:metadata>
-        <f:viewParam id="id" name="id" value="#{customerDetailBean.id}" />
+        <f:viewParam id="id" name="id" value="#{customerDetailBean.id}" required="true" requiredMessage="customerId is required"/>
     </f:metadata>
 
     <h:body>
         <ui:composition template="shared/_layout.xhtml">
             <ui:define name="content">
-                <p:toolbar>
+                <p:toolbar style="margin-bottom: 10px">
                     <p:toolbarGroup align="left">
                         <p:outputLabel value="${customerDetailBean.customer.name}" />
                     </p:toolbarGroup>
                 </p:toolbar>
 
-                <p:separator />
-
-                    <p:panelGrid columns="2" cellpadding="30">
-                        <p:panelGrid columns="2" cellpadding="5">
+                    <p:panelGrid columns="2" cellpadding="30" style="margin-bottom: 10px" styleClass="ui-noborder">
+                        <p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
                             <p:outputLabel value="Street:" />
                             <h:outputText value="#{customerDetailBean.customer.street}" style="font-weight: bold"/>
 
@@ -40,12 +38,24 @@
                             <p:outputLabel value="Country:" />
                             <h:outputText value="#{customerDetailBean.customer.country}" style="font-weight: bold"/>
                         </p:panelGrid>
-                        <p:panelGrid columns="2" cellpadding="5">
+                        <p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
 
+                            <p:outputLabel value="E-Mail:" />
+                            <h:outputText value="#{customerDetailBean.customer.email}" style="font-weight: bold"/>
+
+                            <p:outputLabel value="Telefon Private:" />
+                            <h:outputText value="#{customerDetailBean.customer.telefonPrivate}" style="font-weight: bold"/>
+
+                            <p:outputLabel value="Telefon Mobile:" />
+                            <h:outputText value="#{customerDetailBean.customer.telefonMobile}" style="font-weight: bold"/>
+
+                            <p:outputLabel value="Fax:" />
+                            <h:outputText value="#{customerDetailBean.customer.fax}" style="font-weight: bold"/>
+
+                            <p:outputLabel value="Number of Orders:" />
+                            <h:outputText value="#{customerDetailBean.customer.orders.size()}" style="font-weight: bold"/>
                         </p:panelGrid>
                     </p:panelGrid>
-
-                <p:separator />
 
                 <p:dataTable var="order" value="#{customerDetailBean.customer.orders}">
                     <f:facet name="header">
@@ -66,9 +76,17 @@
                     </p:column>
                 </p:dataTable>
 
-                <p:link outcome="customer-create" value="edit">
-                    <f:param name="id" value="#{customerDetailBean.id}" />
-                </p:link>
+
+                <p:panelGrid columns="2" cellPadding="5" styleClass="ui-noborder">
+                    <p:link outcome="customer-create" value="edit">
+                        <f:param name="id" value="#{customerDetailBean.id}" />
+                    </p:link>
+
+                    <p:button outcome="order-create" value="Add Order">
+                        <f:param value="#{customerDetailBean.id}" name="customer_id"/>
+                    </p:button>
+                </p:panelGrid>
+
             </ui:define>
         </ui:composition>
     </h:body>

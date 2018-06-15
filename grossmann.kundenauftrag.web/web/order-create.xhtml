@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <f:viewParam id="customer_id" name="customer_id" value="#{orderCreateBean.customerId}" />
+    </f:metadata>
+
+    <f:metadata>
+        <f:viewParam id="order_id" name="order_id" value="#{orderCreateBean.orderId}" />
+    </f:metadata>
+
+    <h:body>
+        <ui:composition template="shared/_layout.xhtml">
+            <ui:define name="content">
+                <p:toolbar style="margin-bottom: 10px">
+                    <p:toolbarGroup align="left">
+                        <p:outputLabel value="Create Order" />
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                <h:form id="form">
+
+                    <p:growl id="msg" />
+
+                    <h:panelGrid columns="2" cellpadding="5" id="grid">
+
+                        <p:outputLabel value="Customer:"/>
+                        <p:selectOneListbox id="advanced" value="#{orderCreateBean.order.customer}" converter="customerConverter" var="c" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{orderCreateBean.customers}" var="customer" itemLabel="#{customer.name}" itemValue="#{customer}" />
+
+                            <p:column>
+                                <h:outputText value="#{c.name}" />
+                            </p:column>
+                        </p:selectOneListbox>
+
+                        <p:outputLabel for="datetime" value="Datetime:" />
+                        <p:calendar id="datetime" value="#{orderCreateBean.dateTime}" pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:panelGrid>
+
+                    <p:commandButton value="Submit" icon="ui-icon-check" action="#{orderCreateBean.submit()}" update="grid">
+                        <p:ajax update="msg" listener="#{orderCreateBean.submit}"/>
+                    </p:commandButton>
+
+                    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                            <h:outputText value="Datetime:" />
+                            <h:outputText value="#{orderCreateBean.dateTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:panelGrid>
+                    </p:dialog>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

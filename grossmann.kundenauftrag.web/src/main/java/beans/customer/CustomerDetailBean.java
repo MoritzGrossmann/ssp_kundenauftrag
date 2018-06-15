@@ -1,8 +1,9 @@
-package beans;
+package beans.customer;
 
 import database.CustomerRepository;
 import model.Customer;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
@@ -12,6 +13,11 @@ public class CustomerDetailBean {
     @EJB
     private
     CustomerRepository customerRepository;
+
+    @PostConstruct
+    public void init() {
+
+    }
 
     private int id;
 
@@ -30,5 +36,4 @@ public class CustomerDetailBean {
             this.customer = customerRepository.getById(id);
         return this.customer;
     }
-
 }

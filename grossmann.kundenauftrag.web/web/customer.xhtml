@@ -9,12 +9,27 @@
         <ui:composition template="shared/_layout.xhtml">
             <ui:define name="content">
 
-                <p:toolbar>
+                <p:toolbar style="margin-bottom: 10px">
                     <p:toolbarGroup align="left">
                         <p:outputLabel value="Customer" />
                     </p:toolbarGroup>
                 </p:toolbar>
-                <h:form id="form">
+
+                <h:form>
+                    <p:panel id="panel" header="Search" style="margin-bottom:10px;">
+                        <p:messages id="messages" />
+                        <h:panelGrid columns="4" cellpadding="5">
+                            <h:outputLabel for="search" value="Name: *" />
+                            <p:inputText id="search" value="#{customerBean.searchText}" required="true" label="Name: ">
+                                <f:validateLength minimum="2" />
+                            </p:inputText>
+                            <p:message for="search" />
+                            <p:commandButton update="customer" value="search" actionListener="#{customerBean.search}"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+
+                <h:form id="customer">
                     <p:repeat value="#{customerBean.customer}" var="customer">
                         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
                             <p:outputPanel>

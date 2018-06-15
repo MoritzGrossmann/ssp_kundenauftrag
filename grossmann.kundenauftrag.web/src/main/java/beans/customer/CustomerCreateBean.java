@@ -1,12 +1,11 @@
-package beans;
+package beans.customer;
 
+import beans.MessageBean;
 import database.CustomerRepository;
 import model.Customer;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "customerCreateBean")
 public class CustomerCreateBean {
@@ -36,15 +35,18 @@ public class CustomerCreateBean {
     }
 
     public void submit() {
+        MessageBean messageBean = MessageBean.getCurrentInstance();
         try {
             if (customer.getId() == 0) {
                 customerRepository.insert(this.customer);
             } else {
                 customerRepository.update(customer);
             }
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer saved successful"));
+
+            messageBean.showInfo("Success","Customer saved successful");
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error while saving customer"));
+            messageBean.showError("Error","Error during saving of Customer");
         }
     }
+
 }
