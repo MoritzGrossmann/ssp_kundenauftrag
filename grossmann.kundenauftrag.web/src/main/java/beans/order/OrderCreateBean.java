@@ -9,13 +9,13 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import java.util.Date;
 import java.util.List;
 
-@ManagedBean(name = "orderCreateBean")
-@SessionScoped
+@ManagedBean
+@RequestScoped
 public class OrderCreateBean {
 
     @EJB
@@ -26,7 +26,7 @@ public class OrderCreateBean {
 
     @PostConstruct
     public void init() {
-
+        this.customers = customerRepository.getAll();
     }
 
     public void submit() {
@@ -36,7 +36,8 @@ public class OrderCreateBean {
             if (order.getId() > 0) {
                 orderRepository.update(order);
             } else {
-                orderRepository.insert(order);
+                selectedCustomer.addOrder(this.order);
+                customerRepository.update(selectedCustomer);
             }
             context.addMessage(null, new FacesMessage("Succcess",  "Order saved successful") );
         } catch (Exception e) {
@@ -52,12 +53,19 @@ public class OrderCreateBean {
 
     private Order order = new Order();
 
+    private Customer selectedCustomer;
+
+    public Customer getSelectedCustomer() {
+        return selectedCustomer;
+    }
+
+    public void setSelectedCustomer(Customer selectedCustomer) {
+        this.selectedCustomer = selectedCustomer;
+    }
+
     private List<Customer> customers;
 
     public List<Customer> getCustomers() {
-        if (customers == null) {
-            customers = customerRepository.getAll();
-        }
         return customers;
     }
 
@@ -71,6 +79,9 @@ public class OrderCreateBean {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+        this.order = orderRepository.getById(orderId);
+        this.dateTime = new Date(this.order.getDateTime().getTime());
+        this.selectedCustomer = order.getCustomer();
     }
 
     public int getCustomerId() {
@@ -79,17 +90,10 @@ public class OrderCreateBean {
 
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
+        selectedCustomer = customerRepository.getById(customerId);
     }
 
     public Order getOrder() {
-        if (orderId > 0) {
-            this.order = orderRepository.getById(orderId);
-        } else {
-            this.order = new Order();
-            if (customerId > 0) {
-                order.setCustomer(customerRepository.getById(customerId));
-            }
-        }
         return order;
     }
 
@@ -98,9 +102,6 @@ public class OrderCreateBean {
     }
 
     public Date getDateTime() {
-        if (dateTime == null) {
-            dateTime = new Date();
-        }
         return dateTime;
     }
 

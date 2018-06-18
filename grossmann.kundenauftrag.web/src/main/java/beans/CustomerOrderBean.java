@@ -5,13 +5,19 @@ import model.Order;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import java.util.ResourceBundle;
 
-@ManagedBean(name = "customerOrderBean", eager = true)
+@ManagedBean
+@RequestScoped
 public class CustomerOrderBean {
 
     @EJB
     private
     OrderRepository orderRepository;
+
+    ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
     private int id;
 
@@ -21,13 +27,12 @@ public class CustomerOrderBean {
 
     public void setId(int id) {
         this.id = id;
+        this.order = orderRepository.getById(this.id);
     }
 
     private Order order;
 
     public Order getOrder() {
-        if (this.order == null || this.id != this.order.getId())
-            this.order = orderRepository.getById(this.id);
         return this.order;
     }
 }

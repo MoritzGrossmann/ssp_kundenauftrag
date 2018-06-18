@@ -18,7 +18,7 @@
 
                 <p:toolbar>
                     <p:toolbarGroup align="left">
-                        <p:outputLabel value="Create Customer" />
+                        <p:outputLabel value="#{msg.customer_add}" />
                     </p:toolbarGroup>
                 </p:toolbar>
 
@@ -27,48 +27,48 @@
                 <p:growl id="msg" />
 
                 <h:panelGrid columns="3" cellpadding="5" id="grid">
-                    <p:outputLabel value="Name:"/>
+                    <p:outputLabel value="#{msg.name}:"/>
                     <p:inputText id="name" value="#{customerCreateBean.customer.name}" required="true"/>
                     <p:message for="name" />
 
-                    <p:outputLabel value="Email:" />
+                    <p:outputLabel value="#{msg.email}:" />
                     <p:inputText id="email" value="#{customerCreateBean.customer.email}" required="true"/>
                     <p:message for="email" />
 
-                    <p:outputLabel value="Street:" />
+                    <p:outputLabel value="#{msg.street}:" />
                     <p:inputText id="street" value="#{customerCreateBean.customer.street}" />
                     <p:message for="street" />
 
-                    <p:outputLabel value="HouseNumber:" />
+                    <p:outputLabel value="#{msg.housenumber}:" />
                     <p:inputText value="#{customerCreateBean.customer.houseNumber}"/>
                     <p:message for="street" />
 
-                    <p:outputLabel value="Postcode:" />
+                    <p:outputLabel value="#{msg.postcode}:" />
                     <p:inputText value="#{customerCreateBean.customer.postcode}"/>
                     <p:message for="street" />
 
-                    <p:outputLabel value="City:" />
+                    <p:outputLabel value="#{msg.city}:" />
                     <p:inputText value="#{customerCreateBean.customer.city}"/>
                     <p:message for="street" />
 
-                    <p:outputLabel value="Country:" />
+                    <p:outputLabel value="#{msg.country}:" />
                     <p:inputText value="#{customerCreateBean.customer.country}"/>
                     <p:message for="street" />
 
-                    <p:outputLabel value="Telefon Private:" />
+                    <p:outputLabel value="#{msg.phone_private}:" />
                     <p:inputText value="#{customerCreateBean.customer.telefonPrivate}"/>
                     <p:message for="street" />
 
-                    <p:outputLabel value="Telefon Mobile:" />
+                    <p:outputLabel value="#{msg.phone_mobile}:" />
                     <p:inputText value="#{customerCreateBean.customer.telefonMobile}"/>
                     <p:message for="street" />
 
-                    <p:outputLabel value="Fax:" />
+                    <p:outputLabel value="#{msg.fax}:" />
                     <p:inputText value="#{customerCreateBean.customer.fax}"/>
                     <p:message for="street" />
                 </h:panelGrid>
 
-                <p:commandButton value="Submit" icon="ui-icon-check" action="#{customerCreateBean.submit()}" update="grid">
+                <p:commandButton value="#{msg.submit}" icon="ui-icon-check" action="#{customerCreateBean.submit()}" update="grid">
                         <p:ajax update="msg" listener="#{customerCreateBean.submit}"/>
                 </p:commandButton>
                 </h:form>

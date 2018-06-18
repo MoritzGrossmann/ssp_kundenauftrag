@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>6.2</version>
+            <version>6.1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/javax.ejb/ejb-api -->
@@ -65,6 +65,14 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.security/jaas -->
+        <dependency>
+            <groupId>javax.security</groupId>
+            <artifactId>jaas</artifactId>
+            <version>1.0.01</version>
+        </dependency>
+
         <dependency>
             <groupId>grossmann.kundenauftrag.database</groupId>
             <artifactId>grossmann-kundenauftrag-database</artifactId>

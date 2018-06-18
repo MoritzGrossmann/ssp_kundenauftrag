@@ -16,14 +16,14 @@
             <ui:define name="content">
                 <p:toolbar>
                     <p:toolbarGroup align="left">
-                        <p:outputLabel value="CustomerOrder #{customerOrderBean.order.id}" />
+                        <p:outputLabel value="#{msg.order_name} #{customerOrderBean.order.id}" />
                     </p:toolbarGroup>
                 </p:toolbar>
                 <p:dataTable var="order" value="#{customerOrderBean.order.productionOrders}">
                     <f:facet name="header">
-                        Productionorders
+                        #{msg.productionOrders_name}
                     </f:facet>
-                    <p:column headerText="Id">
+                    <p:column headerText="#{msg.id}">
                         <h:outputText value="#{order.id}" />
                     </p:column>
                 </p:dataTable>

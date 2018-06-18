@@ -20,57 +20,57 @@
                         <p:outputLabel value="${customerDetailBean.customer.name}" />
                     </p:toolbarGroup>
                 </p:toolbar>
-
+                    <h:form>
                     <p:panelGrid columns="2" cellpadding="30" style="margin-bottom: 10px" styleClass="ui-noborder">
                         <p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
-                            <p:outputLabel value="Street:" />
+                            <p:outputLabel value="#{msg.street}:" />
                             <h:outputText value="#{customerDetailBean.customer.street}" style="font-weight: bold"/>
 
-                            <p:outputLabel value="HouseNumber:" />
+                            <p:outputLabel value="#{msg.housenumber}:" />
                             <h:outputText value="#{customerDetailBean.customer.houseNumber}" style="font-weight: bold"/>
 
-                            <p:outputLabel value="Postcode:" />
+                            <p:outputLabel value="#{msg.postcode}:" />
                             <h:outputText value="#{customerDetailBean.customer.postcode}" style="font-weight: bold"/>
 
-                            <p:outputLabel value="City:" />
+                            <p:outputLabel value="#{msg.city}:" />
                             <h:outputText value="#{customerDetailBean.customer.city}" style="font-weight: bold"/>
 
-                            <p:outputLabel value="Country:" />
+                            <p:outputLabel value="#{msg.country}:" />
                             <h:outputText value="#{customerDetailBean.customer.country}" style="font-weight: bold"/>
                         </p:panelGrid>
                         <p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
 
-                            <p:outputLabel value="E-Mail:" />
+                            <p:outputLabel value="#{msg.email}:" />
                             <h:outputText value="#{customerDetailBean.customer.email}" style="font-weight: bold"/>
 
-                            <p:outputLabel value="Telefon Private:" />
+                            <p:outputLabel value="#{msg.phone_private}:" />
                             <h:outputText value="#{customerDetailBean.customer.telefonPrivate}" style="font-weight: bold"/>
 
-                            <p:outputLabel value="Telefon Mobile:" />
+                            <p:outputLabel value="#{msg.phone_mobile}:" />
                             <h:outputText value="#{customerDetailBean.customer.telefonMobile}" style="font-weight: bold"/>
 
-                            <p:outputLabel value="Fax:" />
+                            <p:outputLabel value="#{msg.fax}:" />
                             <h:outputText value="#{customerDetailBean.customer.fax}" style="font-weight: bold"/>
 
-                            <p:outputLabel value="Number of Orders:" />
+                            <p:outputLabel value="#{msg.numberOfOrders}:" />
                             <h:outputText value="#{customerDetailBean.customer.orders.size()}" style="font-weight: bold"/>
                         </p:panelGrid>
                     </p:panelGrid>
 
                 <p:dataTable var="order" value="#{customerDetailBean.customer.orders}">
                     <f:facet name="header">
-                        Orders
+                        #{msg.orders}
                     </f:facet>
-                    <p:column headerText="Id">
+                    <p:column headerText="#{msg.id}">
                         <h:outputText value="#{order.id}" />
                     </p:column>
 
-                    <p:column headerText="DateTime">
+                    <p:column headerText="#{msg.date}">
                         <h:outputText value="#{order.dateTime}" />
                     </p:column>
 
                     <p:column>
-                        <h:link value="Show" outcome="order-detail">
+                        <h:link value="#{msg.show}" outcome="order-detail">
                             <f:param name="id" value="#{order.id}"/>
                         </h:link>
                     </p:column>
@@ -78,15 +78,15 @@
 
 
                 <p:panelGrid columns="2" cellPadding="5" styleClass="ui-noborder">
-                    <p:link outcome="customer-create" value="edit">
+                    <p:button outcome="customer-create" value="#{msg.edit}" icon="ui-icon-pencil">
                         <f:param name="id" value="#{customerDetailBean.id}" />
-                    </p:link>
+                    </p:button>
 
-                    <p:button outcome="order-create" value="Add Order">
+                    <p:button outcome="order-create" value="#{msg.order_add}" icon="ui-icon-plus">
                         <f:param value="#{customerDetailBean.id}" name="customer_id"/>
                     </p:button>
                 </p:panelGrid>
-
+                    </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

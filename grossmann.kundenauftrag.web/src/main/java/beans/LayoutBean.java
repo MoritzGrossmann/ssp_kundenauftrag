@@ -1,9 +1,9 @@
 package beans;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 
-@Named
+@ManagedBean
 @SessionScoped
 public class LayoutBean
 {

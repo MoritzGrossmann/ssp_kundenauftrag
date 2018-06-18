@@ -40,11 +40,13 @@ public class GenericRepository<T> implements Repository<T>, Serializable {
     }
 
     public T getById(int id) {
-        return entityManager.find(type, id);
+        T item = entityManager.find(type, id);
+        return item;
     }
 
     public void insert(T obj) {
         entityManager.persist(obj);
+        entityManager.flush();
     }
 
     public void delete(T item) {

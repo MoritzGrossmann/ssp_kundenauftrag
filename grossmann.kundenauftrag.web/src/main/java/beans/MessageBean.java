@@ -2,9 +2,11 @@ package beans;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-@ManagedBean(name = "messageBean")
+@ManagedBean
+@SessionScoped
 public class MessageBean {
 
     public void showInfo(String summery, String detail) {

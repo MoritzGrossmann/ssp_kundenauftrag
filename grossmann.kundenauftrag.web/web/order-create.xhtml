@@ -28,8 +28,8 @@
 
                     <h:panelGrid columns="2" cellpadding="5" id="grid">
 
-                        <p:outputLabel value="Customer:"/>
-                        <p:selectOneListbox id="advanced" value="#{orderCreateBean.order.customer}" converter="customerConverter" var="c" filter="true" filterMatchMode="contains">
+                        <p:outputLabel value="#{msg.customer_name_singular}:"/>
+                        <p:selectOneListbox id="advanced" value="#{orderCreateBean.selectedCustomer}" converter="customerConverter" var="c" filter="true" filterMatchMode="contains">
                             <f:selectItems value="#{orderCreateBean.customers}" var="customer" itemLabel="#{customer.name}" itemValue="#{customer}" />
 
                             <p:column>
@@ -37,11 +37,11 @@
                             </p:column>
                         </p:selectOneListbox>
 
-                        <p:outputLabel for="datetime" value="Datetime:" />
+                        <p:outputLabel for="datetime" value="#{msg.date}:" />
                         <p:calendar id="datetime" value="#{orderCreateBean.dateTime}" pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:panelGrid>
 
-                    <p:commandButton value="Submit" icon="ui-icon-check" action="#{orderCreateBean.submit()}" update="grid">
+                    <p:commandButton value="#{msg.submit}" icon="ui-icon-check" action="#{orderCreateBean.submit()}" update="grid">
                         <p:ajax update="msg" listener="#{orderCreateBean.submit}"/>
                     </p:commandButton>
 

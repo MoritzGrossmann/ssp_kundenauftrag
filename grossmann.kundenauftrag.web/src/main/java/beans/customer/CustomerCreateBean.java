@@ -6,11 +6,14 @@ import model.Customer;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
-@ManagedBean(name = "customerCreateBean")
+@ManagedBean
+@RequestScoped
 public class CustomerCreateBean {
 
     @EJB
+    private
     CustomerRepository customerRepository;
 
     private Customer customer = new Customer();

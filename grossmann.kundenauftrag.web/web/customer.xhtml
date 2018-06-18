@@ -11,20 +11,20 @@
 
                 <p:toolbar style="margin-bottom: 10px">
                     <p:toolbarGroup align="left">
-                        <p:outputLabel value="Customer" />
+                        <p:outputLabel value="#{msg.customer_name}" />
                     </p:toolbarGroup>
                 </p:toolbar>
 
                 <h:form>
-                    <p:panel id="panel" header="Search" style="margin-bottom:10px;">
+                    <p:panel id="panel" header="#{msg.search}" style="margin-bottom:10px;">
                         <p:messages id="messages" />
                         <h:panelGrid columns="4" cellpadding="5">
-                            <h:outputLabel for="search" value="Name: *" />
+                            <h:outputLabel for="search" value="#{msg.name}: *" />
                             <p:inputText id="search" value="#{customerBean.searchText}" required="true" label="Name: ">
                                 <f:validateLength minimum="2" />
                             </p:inputText>
                             <p:message for="search" />
-                            <p:commandButton update="customer" value="search" actionListener="#{customerBean.search}"/>
+                            <p:commandButton update="customer" value="#{msg.search}" actionListener="#{customerBean.search}"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
@@ -34,20 +34,20 @@
                         <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
                             <p:outputPanel>
                                 <h:panelGrid columns="2" cellpadding="5">
-                                    <h:outputText value="Id:" />
+                                    <h:outputText value="#{msg.id}:" />
                                     <h:outputText value="#{customer.id}" style="font-weight: bold"/>
 
-                                    <h:outputText value="Name:" />
+                                    <h:outputText value="#{msg.name}:" />
                                     <h:outputText value="#{customer.name}" style="font-weight: bold"/>
 
-                                    <h:outputText value="Email:" />
+                                    <h:outputText value="#{msg.email}:" />
                                     <h:outputText value="#{customer.email}" style="font-weight: bold"/>
 
 
 
                                 </h:panelGrid>
                             </p:outputPanel>
-                            <h:link title="View Detail" outcome="customer-detail">
+                            <h:link title="#{msg.show_detail}" outcome="customer-detail">
                                 <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
                                 <f:param value="#{customer.id}" name="id"/>
                             </h:link>

@@ -3,23 +3,28 @@ package beans.customer;
 import database.CustomerRepository;
 import model.Customer;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import java.util.List;
 
-@ManagedBean(name = "customerBean", eager = true)
+@ManagedBean
+@RequestScoped
 public class CustomerBean {
 
     @EJB
     private
     CustomerRepository customerRepository;
 
+    @PostConstruct
+    public void init() {
+        this.customer = customerRepository.getAll();
+    }
+
     private List<Customer> customer;
 
     public List<Customer> getCustomer() {
-        if (customer == null) {
-            this.customer = customerRepository.getAll();
-        }
         return this.customer;
     }
 

@@ -6,8 +6,10 @@ import model.Customer;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
-@ManagedBean(name = "customerDetailBean", eager = true)
+@ManagedBean
+@RequestScoped
 public class CustomerDetailBean {
 
     @EJB
@@ -27,13 +29,13 @@ public class CustomerDetailBean {
 
     public void setId(int id) {
         this.id = id;
+        Customer customer = customerRepository.getById(this.id);
+        this.customer = customer;
     }
 
     private Customer customer;
 
     public Customer getCustomer() {
-        if (this.customer == null || this.id != this.customer.getId())
-            this.customer = customerRepository.getById(id);
         return this.customer;
     }
 }
