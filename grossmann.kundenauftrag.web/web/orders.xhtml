@@ -31,7 +31,7 @@
                     <p:column headerText="#{msg.id}" sortBy="#{order.id}" filterBy="#{order.id}">
                         <h:outputText value="#{order.id}" />
                     </p:column>
-                    <p:column headerText="#{msg.date}" sortBy="#{order.dateTime}" filterBy="#{order.dateTime}">
+                    <p:column headerText="#{msg.date}" sortBy="#{order.dateTime.toString}" filterBy="#{order.dateTime.toString}">
                         <h:outputText value="#{order.dateTime}" />
                     </p:column>
                     <p:column headerText="#{msg.customer_name_singular}" sortBy="#{order.customer.toString}" filterBy="#{order.customer.toString}">

@@ -7,7 +7,7 @@ public class Month implements Comparable<Month> {
     }
 
     public Month(int year, int month) {
-        if (this.month > 12 || this.month < 1) {
+        if (month > 12 || month < 1) {
             throw new IllegalArgumentException("Argument month must be between 1 and 12");
         }
 

@@ -29,9 +29,6 @@ public class StartUp {
     public void init() {
 
         CustomerImporter customerImporter = new CustomerXmlImporter();
-
-        if (customerRepository.getAll().size() == 0) {
-
             try {
                 Collection<Customer> customers = customerImporter.readFile(new File("D:\\Moritz\\Projekt\\Java\\IntelliJ\\ssp_kundenauftrag\\grossmann.kundenauftrag.xml\\src\\main\\resources\\customer.xml"));
 
@@ -39,7 +36,5 @@ public class StartUp {
             } catch (ParseXmlException e) {
                 e.printStackTrace();
             }
-
-        }
     }
 }
