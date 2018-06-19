@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -158,6 +160,7 @@ public class Customer {
         this.country = country;
     }
 
+    @JsonIgnore
     public Collection<Order> getOrders() {
         return orders;
     }

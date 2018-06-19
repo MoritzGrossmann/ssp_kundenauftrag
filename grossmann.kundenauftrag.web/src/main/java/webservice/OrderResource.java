@@ -31,4 +31,20 @@ public class OrderResource {
             return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
         }
     }
+
+    @Path("customer")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCustomerFromOrder(@PathParam("orderId") String orderId) {
+        try {
+            int id = Integer.parseInt(orderId);
+            Order order = orderRepository.getById(id);
+            if (order == null) {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+            return Response.status(Response.Status.OK).entity(order.getCustomer()).build();
+        } catch (NumberFormatException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
+        }
+    }
 }

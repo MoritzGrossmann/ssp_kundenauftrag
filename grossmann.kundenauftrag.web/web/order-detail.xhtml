@@ -13,20 +13,48 @@
 
     <h:body>
         <ui:composition template="shared/_layout.xhtml">
+            <ui:define name="scripts">
+                <h:outputScript library="lib" name="jquery-3.1.1.min.js"/>
+                <h:outputScript library="lib" name="knockout.js"/>
+                <h:outputScript library="lib" name="orderViewModel.js" target="body"/>
+            </ui:define>
+
             <ui:define name="content">
-                <p:toolbar>
-                    <p:toolbarGroup align="left">
-                        <p:outputLabel value="#{msg.order_name} #{customerOrderBean.order.id}" />
-                    </p:toolbarGroup>
-                </p:toolbar>
-                <p:dataTable var="order" value="#{customerOrderBean.order.productionOrders}">
-                    <f:facet name="header">
-                        #{msg.productionOrders_name}
-                    </f:facet>
-                    <p:column headerText="#{msg.id}">
-                        <h:outputText value="#{order.id}" />
-                    </p:column>
-                </p:dataTable>
+                <h:outputText id="orderId" value="#{customerOrderBean.id}" style="visibility: hidden"/>
+                <div id="order">
+                    <p:toolbar>
+                        <p:toolbarGroup align="left">
+                            <p:outputLabel value="#{msg.order_name} " /><span data-bind="text: id"/>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                    <p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
+                        <p:outputLabel value="#{msg.customer_name_singular}"/>
+                        <span data-bind="text: customer.firstname" style="font-weight: bold"/>
+
+                        <p:outputLabel value="#{msg.date}:" />
+                        <span data-bind="text: dateTime" style="font-weight: bold"/>
+                    </p:panelGrid>
+                    <div id="j_idt40" class="ui-datatable ui-widget">
+                        <div class="ui-datatable-tablewrapper">
+                            <table role="grid">
+                                <thead id="j_idt40_head">
+                                    <tr role="row">
+                                        <th id="j_idt40:j_idt27" class="ui-state-default" role="columnheader" aria-label="Identnummer" scope="col">
+                                            <span class="ui-column-title"><h:outputText value="#{msg.productionOrder_name}"/></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="j_idt40_data" class="ui-datatable-data ui-widget-content" data-bind="foreach: productionOrders">
+                                    <tr role="row">
+                                        <td role="gridcell">
+                                            <span data-bind="text: $data"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>
