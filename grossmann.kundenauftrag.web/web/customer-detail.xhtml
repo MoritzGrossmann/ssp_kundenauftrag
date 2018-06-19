@@ -17,7 +17,7 @@
             <ui:define name="content">
                 <p:toolbar style="margin-bottom: 10px">
                     <p:toolbarGroup align="left">
-                        <p:outputLabel value="${customerDetailBean.customer.name}" />
+                        <p:outputLabel value="#{customerDetailBean.customer.firstname} #{customerDetailBean.customer.lastname}" />
                     </p:toolbarGroup>
                 </p:toolbar>
                     <h:form>

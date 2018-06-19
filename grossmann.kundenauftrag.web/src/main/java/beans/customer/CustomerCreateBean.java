@@ -1,12 +1,15 @@
 package beans.customer;
 
-import beans.MessageBean;
 import database.CustomerRepository;
 import model.Customer;
+import org.primefaces.event.FlowEvent;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import java.util.ResourceBundle;
 
 @ManagedBean
 @RequestScoped
@@ -15,6 +18,10 @@ public class CustomerCreateBean {
     @EJB
     private
     CustomerRepository customerRepository;
+
+    ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+
+    private boolean skip;
 
     private Customer customer = new Customer();
 
@@ -37,8 +44,25 @@ public class CustomerCreateBean {
         customer = customerRepository.getById(this.id);
     }
 
-    public void submit() {
-        MessageBean messageBean = MessageBean.getCurrentInstance();
+    public boolean isSkip() {
+        return skip;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
+
+    public String onFlowProcess(FlowEvent event) {
+        if(skip) {
+            skip = false;
+            return "confirm";
+        }
+        else {
+            return event.getNewStep();
+        }
+    }
+
+    public void save() {
         try {
             if (customer.getId() == 0) {
                 customerRepository.insert(this.customer);
@@ -46,9 +70,12 @@ public class CustomerCreateBean {
                 customerRepository.update(customer);
             }
 
-            messageBean.showInfo("Success","Customer saved successful");
+            FacesMessage msg = new FacesMessage(msgs.getString("save_successful"), "");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+
         } catch (Exception e) {
-            messageBean.showError("Error","Error during saving of Customer");
+            FacesMessage msg = new FacesMessage(msgs.getString("save_error"), e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
 

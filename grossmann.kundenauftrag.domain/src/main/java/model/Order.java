@@ -1,12 +1,12 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@XmlRootElement
 @Entity
 @Table(name = "customer_order", schema = "customerorder")
 public class Order {
@@ -45,6 +45,7 @@ public class Order {
         this.dateTime = dateTime;
     }
 
+    @JsonIgnore
     public Customer getCustomer() {
         return customer;
     }

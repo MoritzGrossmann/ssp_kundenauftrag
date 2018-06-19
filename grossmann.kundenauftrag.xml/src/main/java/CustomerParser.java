@@ -4,7 +4,9 @@ import xml.ParseXmlException;
 
 public class CustomerParser implements XmlParser<Customer> {
 
-    private static final String NAME_XML_PROPERTY = "Name";
+    private static final String FIRSTNAME_XML_PROPERTY = "Firstname";
+
+    private static final String LASTNAME_XML_PROPERTY = "Lastname";
 
     private static final String ID_XML_PROPERTY = "Id";
 
@@ -41,7 +43,8 @@ public class CustomerParser implements XmlParser<Customer> {
 
     public Customer parse() throws ParseXmlException {
         Customer customer = new Customer();
-        customer.setName(this.element.getChildText(NAME_XML_PROPERTY, this.element.getNamespace()));
+        customer.setFirstname(this.element.getChildText(FIRSTNAME_XML_PROPERTY, this.element.getNamespace()));
+        customer.setLastname(this.element.getChildText(LASTNAME_XML_PROPERTY, this.element.getNamespace()));
         customer.setId(Integer.parseInt(this.element.getChildText(ID_XML_PROPERTY, this.element.getNamespace())));
 
         Element contact = this.element.getChild(CONTACT_XML_PROPERTY,this.element.getNamespace());

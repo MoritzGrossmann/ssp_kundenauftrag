@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: moritz
+  Date: 12.06.2018
+  Time: 09:58
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="shared/_layout.xhtml">
+            <ui:define name="content">
+                <p:toolbar style="margin-bottom: 10px">
+                    <p:toolbarGroup align="left">
+                        <p:outputLabel value="#{msg.orders}" />
+                    </p:toolbarGroup>
+                </p:toolbar>
+                <p:dataTable var="order" value="#{orderBean.orders}">
+                    <p:column headerText="#{msg.id}">
+                        <h:outputText value="#{order.id}" />
+                    </p:column>
+
+                    <p:column headerText="#{msg.date}">
+                        <h:outputText value="#{order.dateTime}" />
+                    </p:column>
+
+                    <p:column headerText="#{msg.customer_name_singular}">
+                        <h:outputText value="#{order.customer.firstname} #{order.customer.lastname}"/>
+                    </p:column>
+
+
+                    <p:column>
+                        <p:panelGrid columns="2">
+                            <h:button outcome="order-detail" value="#{msg.show}">
+                                <f:param name="id" value="#{order.id}"/>
+                            </h:button>
+                            <h:commandButton actionListener="#{orderBean.deleteOrder(order)}" value="#{msg.delete}"/>
+                        </p:panelGrid>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

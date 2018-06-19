@@ -14,8 +14,12 @@ public class Customer {
     private int id;
 
     @Basic
-    @Column(name = "name")
-    private String name;
+    @Column(name = "firstname")
+    private String firstname;
+
+    @Basic
+    @Column(name = "lastname")
+    private String lastname;
 
     @Basic
     @Column(name = "telefon_private")
@@ -66,12 +70,20 @@ public class Customer {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getTelefonPrivate() {
@@ -164,7 +176,8 @@ public class Customer {
         Customer customer = (Customer) o;
 
         if (id != customer.id) return false;
-        if (name != null ? !name.equals(customer.name) : customer.name != null) return false;
+        if (lastname != null ? !lastname.equals(customer.lastname) : customer.lastname != null) return false;
+        if (firstname != null ? !firstname.equals(customer.firstname) : customer.firstname != null) return false;
         if (telefonPrivate != null ? !telefonPrivate.equals(customer.telefonPrivate) : customer.telefonPrivate != null)
             return false;
         if (telefonMobile != null ? !telefonMobile.equals(customer.telefonMobile) : customer.telefonMobile != null)
@@ -182,7 +195,8 @@ public class Customer {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         result = 31 * result + (telefonPrivate != null ? telefonPrivate.hashCode() : 0);
         result = 31 * result + (telefonMobile != null ? telefonMobile.hashCode() : 0);
         result = 31 * result + (fax != null ? fax.hashCode() : 0);

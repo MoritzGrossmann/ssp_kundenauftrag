@@ -38,13 +38,10 @@
                                     <h:outputText value="#{customer.id}" style="font-weight: bold"/>
 
                                     <h:outputText value="#{msg.name}:" />
-                                    <h:outputText value="#{customer.name}" style="font-weight: bold"/>
+                                    <h:outputText value="#{customer.firstname} #{customer.lastname}" style="font-weight: bold"/>
 
                                     <h:outputText value="#{msg.email}:" />
                                     <h:outputText value="#{customer.email}" style="font-weight: bold"/>
-
-
-
                                 </h:panelGrid>
                             </p:outputPanel>
                             <h:link title="#{msg.show_detail}" outcome="customer-detail">

@@ -24,12 +24,16 @@
 
                 <h:form>
 
-                <p:growl id="msg" />
+                <p:growl id="growl" sticky="true" showDetail="true"/>
 
                 <h:panelGrid columns="3" cellpadding="5" id="grid">
-                    <p:outputLabel value="#{msg.name}:"/>
-                    <p:inputText id="name" value="#{customerCreateBean.customer.name}" required="true"/>
-                    <p:message for="name" />
+                    <p:outputLabel value="#{msg.firstname}:"/>
+                    <p:inputText id="firstname" value="#{customerCreateBean.customer.firstname}" required="true"/>
+                    <p:message for="firstname" />
+
+                    <p:outputLabel value="#{msg.lastname}:"/>
+                    <p:inputText id="lastname" value="#{customerCreateBean.customer.lastname}" required="true"/>
+                    <p:message for="lastname" />
 
                     <p:outputLabel value="#{msg.email}:" />
                     <p:inputText id="email" value="#{customerCreateBean.customer.email}" required="true"/>
@@ -68,9 +72,7 @@
                     <p:message for="street" />
                 </h:panelGrid>
 
-                <p:commandButton value="#{msg.submit}" icon="ui-icon-check" action="#{customerCreateBean.submit()}" update="grid">
-                        <p:ajax update="msg" listener="#{customerCreateBean.submit}"/>
-                </p:commandButton>
+                    <p:commandButton value="#{msg.submit}" actionListener="#{customerCreateBean.save}" update="growl" process="@this"/>
                 </h:form>
             </ui:define>
         </ui:composition>

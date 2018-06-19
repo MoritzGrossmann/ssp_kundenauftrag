@@ -30,7 +30,7 @@
 
                         <p:outputLabel value="#{msg.customer_name_singular}:"/>
                         <p:selectOneListbox id="advanced" value="#{orderCreateBean.selectedCustomer}" converter="customerConverter" var="c" filter="true" filterMatchMode="contains">
-                            <f:selectItems value="#{orderCreateBean.customers}" var="customer" itemLabel="#{customer.name}" itemValue="#{customer}" />
+                            <f:selectItems value="#{orderCreateBean.customers}" var="customer" itemLabel="#{customer.firstname} #{customer.lastname}" itemValue="#{customer}" />
 
                             <p:column>
                                 <h:outputText value="#{c.name}" />

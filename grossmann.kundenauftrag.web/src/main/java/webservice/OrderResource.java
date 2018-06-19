@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("order/{orderId}")
-public class OrderController {
+public class OrderResource {
 
     @EJB
     private OrderRepository orderRepository;
