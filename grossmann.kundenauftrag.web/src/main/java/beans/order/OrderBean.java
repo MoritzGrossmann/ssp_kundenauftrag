@@ -2,25 +2,21 @@ package beans.order;
 
 import database.OrderRepository;
 import model.Order;
+import org.primefaces.model.LazyDataModel;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class OrderBean implements Serializable {
 
     @EJB
     private OrderRepository orderRepository;
-
-    @PostConstruct
-    public void init() {
-        this.orders = orderRepository.getAll();
-    }
 
     public void deleteOrder(Order order) {
         try {
@@ -29,6 +25,27 @@ public class OrderBean implements Serializable {
         } catch (Exception e) {
 
         }
+    }
+
+    private LazyDataModel<Order> lazyModel;
+
+    private Order selectedOrder;
+
+    public Order getSelectedOrder() {
+        return selectedOrder;
+    }
+
+    public void setSelectedOrder(Order selectedOrder) {
+        this.selectedOrder = selectedOrder;
+    }
+
+    @PostConstruct
+    public void init() {
+        lazyModel = new LazyOrderDataModel(orderRepository.getAll());
+    }
+
+    public LazyDataModel<Order> getLazyModel() {
+        return lazyModel;
     }
 
     private List<Order> orders;

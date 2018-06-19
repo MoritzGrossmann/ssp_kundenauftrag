@@ -1,7 +1,7 @@
 package lang;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @ManagedBean(name="language")
-@ApplicationScoped
+@SessionScoped
 public class Language implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -36,7 +36,6 @@ public class Language implements Serializable{
         this.locale = locale;
     }
 
-    //value change event listener
     public void localeChanged(ValueChangeEvent e) {
         String newLocaleValue = e.getNewValue().toString();
 

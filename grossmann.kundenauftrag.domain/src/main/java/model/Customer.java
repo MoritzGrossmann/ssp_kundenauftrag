@@ -215,4 +215,9 @@ public class Customer {
         orders.add(order);
         order.setCustomer(this);
     }
+
+    @Override
+    public String toString() {
+        return firstname + " " + lastname;
+    }
 }

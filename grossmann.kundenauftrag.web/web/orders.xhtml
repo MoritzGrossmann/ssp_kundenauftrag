@@ -23,27 +23,19 @@
                         <p:outputLabel value="#{msg.orders}" />
                     </p:toolbarGroup>
                 </p:toolbar>
-                <p:dataTable var="order" value="#{orderBean.orders}">
-                    <p:column headerText="#{msg.id}">
+
+                <p:dataTable var="order" value="#{orderBean.lazyModel}" paginator="true" rows="20"
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{orderBean.selectedOrder}" id="orderTable" lazy="true">
+                    <!--<p:ajax event="rowSelect" listener="#{orderBean.onRowSelect}" update=":form:carDetail" oncomplete="PF('carDialog').show()" /> -->
+                    <p:column headerText="#{msg.id}" sortBy="#{order.id}" filterBy="#{order.id}">
                         <h:outputText value="#{order.id}" />
                     </p:column>
-
-                    <p:column headerText="#{msg.date}">
+                    <p:column headerText="#{msg.date}" sortBy="#{order.dateTime}" filterBy="#{order.dateTime}">
                         <h:outputText value="#{order.dateTime}" />
                     </p:column>
-
-                    <p:column headerText="#{msg.customer_name_singular}">
-                        <h:outputText value="#{order.customer.firstname} #{order.customer.lastname}"/>
-                    </p:column>
-
-
-                    <p:column>
-                        <p:panelGrid columns="2" styleClass="ui-noborder">
-                            <p:button outcome="order-detail" value="#{msg.show}" icon="fa fa-search">
-                                <f:param name="id" value="#{order.id}"/>
-                            </p:button>
-                            <h:commandButton actionListener="#{orderBean.deleteOrder(order)}" value="#{msg.delete}"/>
-                        </p:panelGrid>
+                    <p:column headerText="#{msg.customer_name_singular}" sortBy="#{order.customer.toString}" filterBy="#{order.customer.toString}">
+                        <h:outputText value="#{order.customer.firstname} #{order.customer.lastname}" />
                     </p:column>
                 </p:dataTable>
             </ui:define>

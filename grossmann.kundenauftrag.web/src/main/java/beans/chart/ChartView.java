@@ -56,8 +56,8 @@ public class ChartView implements Serializable {
         Month[] months = new Month[monthStatistics.size()];
         monthStatistics.keySet().toArray(months);
 
-        axis.setMax(months[months.length-1].toString());
-        axis.setMin(months[0].toString());
+        axis.setMax(months[months.length-1].next().toString());
+        axis.setMin(months[0].previous().toString());
 
         axis.setTickFormat("%b %Y");
 

@@ -30,27 +30,13 @@
                 </h:form>
 
                 <h:form id="customer">
-                    <p:repeat value="#{customerBean.customer}" var="customer">
-                        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                            <p:outputPanel>
-                                <h:panelGrid columns="2" cellpadding="5">
-                                    <h:outputText value="#{msg.id}:" />
-                                    <h:outputText value="#{customer.id}" style="font-weight: bold"/>
-
-                                    <h:outputText value="#{msg.name}:" />
-                                    <h:outputText value="#{customer.firstname} #{customer.lastname}" style="font-weight: bold"/>
-
-                                    <h:outputText value="#{msg.email}:" />
-                                    <h:outputText value="#{customer.email}" style="font-weight: bold"/>
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            <h:link title="#{msg.show_detail}" outcome="customer-detail">
-                                <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
-                                <f:param value="#{customer.id}" name="id"/>
-                            </h:link>
-                        </h:panelGrid>
-                        <hr />
-                    </p:repeat>
+                    <p:dataList value="#{customerBean.customer}" var="customer" type="unordered" itemType="none" paginator="true" rows="20" styleClass="paginated">
+                        <p:button title="#{msg.show_detail}" outcome="customer-detail" icon="fa fa-search" style="margin-right: 10px">
+                            <f:param value="#{customer.id}" name="id"/>
+                        </p:button>
+                        <h:outputText value="#{customer.id}" style="display:inline-block; font-weight: bold; margin-right: 10px"/>
+                        <h:outputText value="#{customer.firstname} #{customer.lastname}" style="display:inline-block"/>
+                    </p:dataList>
                 </h:form>
             </ui:define>
         </ui:composition>

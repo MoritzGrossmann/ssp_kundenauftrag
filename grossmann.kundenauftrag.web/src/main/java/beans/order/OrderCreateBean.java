@@ -9,13 +9,13 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.util.Date;
 import java.util.List;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class OrderCreateBean {
 
     @EJB

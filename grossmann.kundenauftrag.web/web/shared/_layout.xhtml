@@ -6,73 +6,78 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <div id="scripts">
-        <ui:insert name="scripts"/>
-    </div>
-</h:head>
 
-<h:body>
-    <h:outputText id="baseUrl" value="#{sessionBean.baseUrl}" style="visibility: hidden"/>
-    <div id="page" class="container">
-        <div id="header">
-            <ui:insert name="header" >
-                <ui:include src="/shared/navbar.xhtml" />
-            </ui:insert>
+<f:view locale="#{language.locale}">
+
+    <h:head>
+        <div id="scripts">
+            <ui:insert name="scripts"/>
         </div>
+    </h:head>
 
-        <div id="content">
-                <ui:insert name="content" >
-
+    <h:body>
+        <h:outputText id="baseUrl" value="#{sessionBean.baseUrl}" style="visibility: hidden"/>
+        <div id="page" class="container">
+            <div id="header">
+                <ui:insert name="header" >
+                    <ui:include src="/shared/navbar.xhtml" />
                 </ui:insert>
+            </div>
+
+            <div id="content">
+                    <ui:insert name="content" >
+
+                    </ui:insert>
+            </div>
+
+            <div id="footer">
+                <ui:insert name="footer" >
+                    <h:form>
+                    <p:messages id="messages" showDetail="true" closable="true">
+
+                    </p:messages>
+                    </h:form>
+                </ui:insert>
+            </div>
+
         </div>
-
-        <div id="footer">
-            <ui:insert name="footer" >
-                <h:form>
-                <p:messages id="messages" showDetail="true" closable="true">
-
-                </p:messages>
-                </h:form>
-            </ui:insert>
-        </div>
-
-    </div>
-    <style type="text/css">
+        <style type="text/css">
 
 
-      .navbar {
-          margin-bottom: 10px;
-      }
+          .navbar {
+              margin-bottom: 10px;
+          }
 
-        @media (min-width: 576px) {
-            .container {
-                margin-left: 0%;
-                margin-right: 0%;
+            @media (min-width: 576px) {
+                .container {
+                    margin-left: 0%;
+                    margin-right: 0%;
+                }
             }
-        }
 
-        @media (min-width: 768px) {
-            .container {
-                margin-left: 10%;
-                margin-right: 10%;
+            @media (min-width: 768px) {
+                .container {
+                    margin-left: 10%;
+                    margin-right: 10%;
+                }
             }
-        }
 
-        @media (min-width: 992px) {
-            .container {
-                margin-left: 15%;
-                margin-right: 15%;
+            @media (min-width: 992px) {
+                .container {
+                    margin-left: 15%;
+                    margin-right: 15%;
+                }
             }
-        }
 
-        @media (min-width: 1200px) {
-            .container {
-                margin-left: 20%;
-                margin-right: 20%;
+            @media (min-width: 1200px) {
+                .container {
+                    margin-left: 20%;
+                    margin-right: 20%;
+                }
             }
-        }
-    </style>
-</h:body>
+        </style>
+    </h:body>
+
+</f:view>
 
 </html>

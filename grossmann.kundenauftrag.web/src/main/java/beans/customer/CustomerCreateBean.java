@@ -2,7 +2,6 @@ package beans.customer;
 
 import database.CustomerRepository;
 import model.Customer;
-import org.primefaces.event.FlowEvent;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -21,8 +20,6 @@ public class CustomerCreateBean {
 
     ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
-    private boolean skip;
-
     private Customer customer = new Customer();
 
     public Customer getCustomer() {
@@ -31,6 +28,11 @@ public class CustomerCreateBean {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public String getHeaderText() {
+        return this.id > 0 ? msgs.getString("customer_name_singular") + " " + this.id + msgs.getString("change")
+                : msgs.getString("customer_add");
     }
 
     private int id;
@@ -42,24 +44,6 @@ public class CustomerCreateBean {
     public void setId(int id) {
         this.id = id;
         customer = customerRepository.getById(this.id);
-    }
-
-    public boolean isSkip() {
-        return skip;
-    }
-
-    public void setSkip(boolean skip) {
-        this.skip = skip;
-    }
-
-    public String onFlowProcess(FlowEvent event) {
-        if(skip) {
-            skip = false;
-            return "confirm";
-        }
-        else {
-            return event.getNewStep();
-        }
     }
 
     public void save() {
