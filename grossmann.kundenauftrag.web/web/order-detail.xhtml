@@ -27,10 +27,14 @@
                             <p:outputLabel value="#{msg.order_name} " /><span data-bind="text: id"/>
                         </p:toolbarGroup>
                     </p:toolbar>
-                    <p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder">
-                        <p:outputLabel value="#{msg.customer_name_singular}"/>
-                        <span data-bind="text: customer.firstname" style="font-weight: bold"/>
 
+                    <div data-bind="with: customer">
+                        <p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder" >
+                            <p:outputLabel value="#{msg.customer_name_singular}"/>
+                            <span data-bind="text: name" style="font-weight: bold"/>
+                        </p:panelGrid>
+                    </div>
+                    <p:panelGrid columns="2" cellpadding="5" styleClass="ui-noborder" >
                         <p:outputLabel value="#{msg.date}:" />
                         <span data-bind="text: dateTime" style="font-weight: bold"/>
                     </p:panelGrid>
@@ -42,18 +46,29 @@
                                         <th id="j_idt40:j_idt27" class="ui-state-default" role="columnheader" aria-label="Identnummer" scope="col">
                                             <span class="ui-column-title"><h:outputText value="#{msg.productionOrder_name}"/></span>
                                         </th>
+                                        <th id="j_idt40:j_idt28" class="ui-state-default" role="columnheader" aria-label="Identnummer" scope="col">
+
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody id="j_idt40_data" class="ui-datatable-data ui-widget-content" data-bind="foreach: productionOrders">
                                     <tr role="row">
                                         <td role="gridcell">
-                                            <span data-bind="text: $data"/>
+                                            <span data-bind="text: $data.id"/>
+                                        </td>
+                                        <td>
+                                            <button data-bind="click: $data.delete">
+                                                    <h:outputText value="#{msg.delete}"/>
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <button data-bind="click: addOrder">
+                        <h:outputText value="#{msg.productionOrder_add}"/>
+                    </button>
                 </div>
             </ui:define>
         </ui:composition>

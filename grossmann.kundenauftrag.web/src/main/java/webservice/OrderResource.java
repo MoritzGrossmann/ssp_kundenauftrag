@@ -1,13 +1,12 @@
 package webservice;
 
 import database.OrderRepository;
+import database.ProductionOrderRepository;
 import model.Order;
+import model.ProductionOrder;
 
 import javax.ejb.EJB;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -16,6 +15,9 @@ public class OrderResource {
 
     @EJB
     private OrderRepository orderRepository;
+
+    @EJB
+    private ProductionOrderRepository productionOrderRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,6 +45,57 @@ public class OrderResource {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
             return Response.status(Response.Status.OK).entity(order.getCustomer()).build();
+        } catch (NumberFormatException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
+        }
+    }
+
+    @Path("productionOrder/{productionOrderId}")
+    @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteProductionOrder(@PathParam("orderId") String orderId, @PathParam("productionOrderId") String prodOrderId) {
+        try {
+            int oId = Integer.parseInt(orderId);
+            int pId = Integer.parseInt(prodOrderId);
+
+            ProductionOrder productionOrder = productionOrderRepository.getById(pId);
+            Order order = orderRepository.getById(oId);
+
+            if (productionOrder == null) {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+
+            if (productionOrder.getOrder().getId() != oId) {
+                return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Productionorder %s is not Part of Customerorder %s", prodOrderId, orderId)).build();
+            }
+            order.getProductionOrders().remove(productionOrder);
+            orderRepository.update(order);
+
+            return Response.status(Response.Status.OK).build();
+        } catch (NumberFormatException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addProductionOrder(@PathParam("orderId") String orderId) {
+        try {
+            int id = Integer.parseInt(orderId);
+            Order order = orderRepository.getById(id);
+            if (order == null) {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+
+            ProductionOrder productionOrder = new ProductionOrder();
+
+            order.addProductionOrder(productionOrder);
+
+            orderRepository.update(order);
+
+            return Response.status(Response.Status.OK).entity(productionOrder).build();
         } catch (NumberFormatException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
         }

@@ -38,10 +38,10 @@
 
 
                     <p:column>
-                        <p:panelGrid columns="2">
-                            <h:button outcome="order-detail" value="#{msg.show}">
+                        <p:panelGrid columns="2" styleClass="ui-noborder">
+                            <p:button outcome="order-detail" value="#{msg.show}" icon="fa fa-search">
                                 <f:param name="id" value="#{order.id}"/>
-                            </h:button>
+                            </p:button>
                             <h:commandButton actionListener="#{orderBean.deleteOrder(order)}" value="#{msg.delete}"/>
                         </p:panelGrid>
                     </p:column>

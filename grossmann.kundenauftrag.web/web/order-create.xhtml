@@ -33,7 +33,7 @@
                             <f:selectItems value="#{orderCreateBean.customers}" var="customer" itemLabel="#{customer.firstname} #{customer.lastname}" itemValue="#{customer}" />
 
                             <p:column>
-                                <h:outputText value="#{c.name}" />
+                                <h:outputText value="#{c.firstname} #{c.lastname}" />
                             </p:column>
                         </p:selectOneListbox>
 

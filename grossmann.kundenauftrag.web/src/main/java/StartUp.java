@@ -30,12 +30,16 @@ public class StartUp {
 
         CustomerImporter customerImporter = new CustomerXmlImporter();
 
-        try {
-            Collection<Customer> customers = customerImporter.readFile(new File("D:\\Moritz\\Projekt\\Java\\IntelliJ\\ssp_kundenauftrag\\grossmann.kundenauftrag.xml\\src\\main\\resources\\customer.xml"));
+        if (customerRepository.getAll().size() == 0) {
 
-            customers.forEach(c -> customerRepository.insert(c));
-        } catch (ParseXmlException e) {
-            e.printStackTrace();
+            try {
+                Collection<Customer> customers = customerImporter.readFile(new File("D:\\Moritz\\Projekt\\Java\\IntelliJ\\ssp_kundenauftrag\\grossmann.kundenauftrag.xml\\src\\main\\resources\\customer.xml"));
+
+                customers.forEach(c -> customerRepository.insert(c));
+            } catch (ParseXmlException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

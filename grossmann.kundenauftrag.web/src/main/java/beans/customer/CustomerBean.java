@@ -39,6 +39,10 @@ public class CustomerBean {
     }
 
     public void search() {
-        this.customer = customerRepository.getByName(searchText);
+        try {
+            this.customer = customerRepository.getByName(searchText.split(" "));
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }
