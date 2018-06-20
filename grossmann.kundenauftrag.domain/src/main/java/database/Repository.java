@@ -12,5 +12,5 @@ public interface Repository<T> {
 
     void delete(T item);
 
-    void update(T item);
+    T update(T item);
 }

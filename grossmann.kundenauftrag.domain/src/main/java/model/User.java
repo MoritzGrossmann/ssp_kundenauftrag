@@ -56,4 +56,12 @@ public class User implements Serializable {
     public void setUserUserGroups(Collection<UserUserGroup> userUserGroups) {
         this.userUserGroups = userUserGroups;
     }
+
+    public void addUserGroup(UserGroup userGroup) {
+        UserUserGroup userUserGroup = new UserUserGroup();
+        userUserGroup.setUser(this);
+        userUserGroup.setUserGroup(userGroup);
+        userGroup.getUserUserGroups().add(userUserGroup);
+        this.userUserGroups.add(userUserGroup);
+    }
 }

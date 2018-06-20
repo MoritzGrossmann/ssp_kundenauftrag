@@ -5,10 +5,12 @@ import model.User;
 
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.security.Principal;
 
+@Named
 public class Authentication implements Serializable {
 
     /**
@@ -33,10 +35,10 @@ public class Authentication implements Serializable {
 
     public String logout() {
         ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().invalidate();
-        return "home";
+        return "index";
     }
 
     public boolean isInRole(String role) {
-        return getUser() != null && user.getGroupName().equals(role);
+        return getUser() != null && user.getUserUserGroups().stream().anyMatch(userUserGroup -> userUserGroup.getUserGroup().getName().equals(role));
     }
 }

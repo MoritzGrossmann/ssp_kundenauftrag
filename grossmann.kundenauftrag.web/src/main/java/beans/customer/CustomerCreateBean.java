@@ -21,7 +21,7 @@ public class CustomerCreateBean implements Serializable {
 
     ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
-    private Customer customer;
+    private Customer customer = new Customer();
 
     public Customer getCustomer() {
         return customer;

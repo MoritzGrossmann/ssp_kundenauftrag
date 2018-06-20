@@ -17,47 +17,47 @@ public class Customer {
 
     @Basic
     @Column(name = "firstname")
-    private String firstname;
+    private String firstname = "";
 
     @Basic
     @Column(name = "lastname")
-    private String lastname;
+    private String lastname= "";
 
     @Basic
     @Column(name = "telefon_private")
-    private String telefonPrivate;
+    private String telefonPrivate= "";
 
     @Basic
     @Column(name = "telefon_mobile")
-    private String telefonMobile;
+    private String telefonMobile= "";
 
     @Basic
     @Column(name = "fax")
-    private String fax;
+    private String fax= "";
 
     @Basic
     @Column(name = "email")
-    private String email;
+    private String email= "";
 
     @Basic
     @Column(name = "street")
-    private String street;
+    private String street= "";
 
     @Basic
     @Column(name = "house_number")
-    private String houseNumber;
+    private String houseNumber= "";
 
     @Basic
     @Column(name = "postcode")
-    private String postcode;
+    private String postcode= "";
 
     @Basic
     @Column(name = "city")
-    private String city;
+    private String city= "";
 
     @Basic
     @Column(name = "country")
-    private String country;
+    private String country= "";
 
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<Order> orders = new ArrayList<Order>();

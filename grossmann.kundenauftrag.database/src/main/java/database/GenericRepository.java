@@ -54,8 +54,7 @@ public class GenericRepository<T> implements Repository<T>, Serializable {
         entityManager.flush();
     }
 
-    public void update(T item) {
-        entityManager.merge(item);
-        entityManager.flush();
+    public T update(T item) {
+        return entityManager.merge(item);
     }
 }

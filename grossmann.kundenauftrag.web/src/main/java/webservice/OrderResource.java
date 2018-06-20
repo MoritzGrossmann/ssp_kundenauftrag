@@ -93,9 +93,9 @@ public class OrderResource {
 
             order.addProductionOrder(productionOrder);
 
-            orderRepository.update(order);
+            order = orderRepository.update(order);
 
-            return Response.status(Response.Status.OK).entity(productionOrder).build();
+            return Response.status(Response.Status.OK).entity(order.getProductionOrders().toArray()[order.getProductionOrders().size()-1]).build();
         } catch (NumberFormatException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
         }

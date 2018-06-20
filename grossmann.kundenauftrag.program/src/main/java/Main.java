@@ -49,6 +49,4 @@ public class Main {
         System.out.println("Application is stopping...");
 
     }
-
-
 }
