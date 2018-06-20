@@ -19,7 +19,7 @@ public class Language implements Serializable{
     private static Map<String,Object> countries;
     static {
 
-        countries = new LinkedHashMap<String,Object>();
+        countries = new LinkedHashMap<>();
         countries.put("German", Locale.GERMAN);
         countries.put("English", Locale.ENGLISH);
     }

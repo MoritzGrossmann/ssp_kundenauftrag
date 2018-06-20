@@ -7,10 +7,11 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import java.io.Serializable;
 
 @ManagedBean
 @RequestScoped
-public class CustomerDetailBean {
+public class CustomerDetailBean implements Serializable {
 
     @EJB
     private

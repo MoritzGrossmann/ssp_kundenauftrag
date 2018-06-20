@@ -7,11 +7,12 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import java.io.Serializable;
 import java.util.ResourceBundle;
 
 @ManagedBean
 @RequestScoped
-public class CustomerOrderBean {
+public class CustomerOrderBean implements Serializable {
 
     @EJB
     private
