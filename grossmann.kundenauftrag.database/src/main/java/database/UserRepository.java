@@ -17,6 +17,8 @@ public class UserRepository extends GenericRepository<User> {
         super(User.class);
     }
 
+
+
     public User getByName(String name) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);

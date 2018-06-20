@@ -1,11 +1,10 @@
 package beans.order;
 
-import model.Order;
 import org.primefaces.model.SortOrder;
 
 import java.util.Comparator;
 
-public class LazySorter implements Comparator<Order> {
+public class LazySorter implements Comparator<LazyOrder> {
 
     private String sortField;
 
@@ -16,10 +15,10 @@ public class LazySorter implements Comparator<Order> {
         this.sortOrder = sortOrder;
     }
 
-    public int compare(Order order1, Order order2) {
+    public int compare(LazyOrder order1, LazyOrder order2) {
         try {
-            Object value1 = Order.class.getField(this.sortField).get(order1);
-            Object value2 = Order.class.getField(this.sortField).get(order2);
+            Object value1 = LazyOrder.class.getField(this.sortField).get(order1);
+            Object value2 = LazyOrder.class.getField(this.sortField).get(order2);
 
             int value = ((Comparable)value1).compareTo(value2);
 

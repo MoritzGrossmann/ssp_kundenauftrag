@@ -24,20 +24,28 @@
                     </p:toolbarGroup>
                 </p:toolbar>
 
-                <p:dataTable var="order" value="#{orderBean.lazyModel}" paginator="true" rows="20"
-                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                             rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{orderBean.selectedOrder}" id="orderTable" lazy="true">
-                    <!--<p:ajax event="rowSelect" listener="#{orderBean.onRowSelect}" update=":form:carDetail" oncomplete="PF('carDialog').show()" /> -->
-                    <p:column headerText="#{msg.id}" sortBy="#{order.id}" filterBy="#{order.id}">
-                        <h:outputText value="#{order.id}" />
-                    </p:column>
-                    <p:column headerText="#{msg.date}" sortBy="#{order.dateTime.toString}" filterBy="#{order.dateTime.toString}">
-                        <h:outputText value="#{order.dateTime}" />
-                    </p:column>
-                    <p:column headerText="#{msg.customer_name_singular}" sortBy="#{order.customer.toString}" filterBy="#{order.customer.toString}">
-                        <h:outputText value="#{order.customer.firstname} #{order.customer.lastname}" />
-                    </p:column>
-                </p:dataTable>
+                <h:form>
+                    <p:dataTable var="order" value="#{orderBean.lazyModel}" paginator="true" rows="20"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                 rowsPerPageTemplate="5,10,15,20" selectionMode="single" selection="#{orderBean.selectedOrder}" id="orderTable" lazy="true">
+                        <p:ajax event="rowSelect" listener="#{orderBean.onRowSelect}"/> -->
+                        <p:column headerText="#{msg.id}" sortBy="#{order.id}" filterBy="#{order.id}">
+                            <h:outputText value="#{order.id}" />
+                        </p:column>
+                        <p:column headerText="#{msg.date}" sortBy="#{order.dateTime}" filterBy="#{order.dateTime}">
+                            <h:outputText value="#{order.dateTime}" />
+                        </p:column>
+                        <p:column headerText="#{msg.customer_name_singular}" sortBy="#{order.customerName}" filterBy="#{order.customerName}">
+                            <h:outputText value="#{order.customerName}" />
+                        </p:column>
+
+                        <p:column>
+                            <p:button outcome="order-detail" value="#{msg.show_detail}" icon="fa fa-search">
+                                <f:param name="id" value="#{order.id}"/>
+                            </p:button>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

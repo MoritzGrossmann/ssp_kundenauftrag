@@ -1,7 +1,7 @@
 package beans.order;
 
 import database.OrderRepository;
-import model.Order;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
 
 import javax.annotation.PostConstruct;
@@ -9,7 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
-import java.util.List;
+import java.util.stream.Collectors;
 
 @ManagedBean
 @ViewScoped
@@ -18,43 +18,30 @@ public class OrderBean implements Serializable {
     @EJB
     private OrderRepository orderRepository;
 
-    public void deleteOrder(Order order) {
-        try {
-            this.orderRepository.delete(order);
-            this.orders.remove(order);
-        } catch (Exception e) {
+    private LazyDataModel<LazyOrder> lazyModel;
 
-        }
-    }
+    private LazyOrder selectedOrder;
 
-    private LazyDataModel<Order> lazyModel;
-
-    private Order selectedOrder;
-
-    public Order getSelectedOrder() {
+    public LazyOrder getSelectedOrder() {
         return selectedOrder;
     }
 
-    public void setSelectedOrder(Order selectedOrder) {
+    public void setSelectedOrder(LazyOrder selectedOrder) {
         this.selectedOrder = selectedOrder;
     }
 
     @PostConstruct
     public void init() {
-        lazyModel = new LazyOrderDataModel(orderRepository.getAll());
+        lazyModel = new LazyOrderDataModel(orderRepository.getAll().stream().map(LazyOrder::new).collect(Collectors.toList()));
     }
 
-    public LazyDataModel<Order> getLazyModel() {
+    public LazyDataModel<LazyOrder> getLazyModel() {
         return lazyModel;
     }
 
-    private List<Order> orders;
+    public String onRowSelect(SelectEvent event) {
+        LazyOrder order = (LazyOrder)event.getObject();
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+        return String.format("order-detail.xhtml?id=%s",order.getId());
     }
 }

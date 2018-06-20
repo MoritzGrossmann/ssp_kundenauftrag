@@ -6,13 +6,13 @@ import model.Customer;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class CustomerCreateBean implements Serializable {
 
     @EJB
@@ -21,7 +21,7 @@ public class CustomerCreateBean implements Serializable {
 
     ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
-    private Customer customer = new Customer();
+    private Customer customer;
 
     public Customer getCustomer() {
         return customer;

@@ -24,55 +24,55 @@
 
                 <h:form>
 
-                <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
 
-                <h:panelGrid columns="3" cellpadding="5" id="grid">
-                    <p:outputLabel value="#{msg.firstname}:"/>
-                    <p:inputText id="firstname" value="#{customerCreateBean.customer.firstname}" required="true"/>
-                    <p:message for="firstname" />
+                    <h:panelGrid columns="3" cellpadding="5" id="grid">
+                        <p:outputLabel value="#{msg.firstname}:"/>
+                        <p:inputText id="firstname" value="#{customerCreateBean.customer.firstname}" required="true"/>
+                        <p:message for="firstname" />
 
-                    <p:outputLabel value="#{msg.lastname}:"/>
-                    <p:inputText id="lastname" value="#{customerCreateBean.customer.lastname}" required="true"/>
-                    <p:message for="lastname" />
+                        <p:outputLabel value="#{msg.lastname}:"/>
+                        <p:inputText id="lastname" value="#{customerCreateBean.customer.lastname}" required="true"/>
+                        <p:message for="lastname" />
 
-                    <p:outputLabel value="#{msg.email}:" />
-                    <p:inputText id="email" value="#{customerCreateBean.customer.email}" required="true"/>
-                    <p:message for="email" />
+                        <p:outputLabel value="#{msg.email}:" />
+                        <p:inputText id="email" value="#{customerCreateBean.customer.email}" required="true"/>
+                        <p:message for="email" />
 
-                    <p:outputLabel value="#{msg.street}:" />
-                    <p:inputText id="street" value="#{customerCreateBean.customer.street}" />
-                    <p:message for="street" />
+                        <p:outputLabel value="#{msg.street}:" />
+                        <p:inputText id="street" value="#{customerCreateBean.customer.street}" />
+                        <p:message for="street" />
 
-                    <p:outputLabel value="#{msg.housenumber}:" />
-                    <p:inputText value="#{customerCreateBean.customer.houseNumber}"/>
-                    <p:message for="street" />
+                        <p:outputLabel value="#{msg.housenumber}:" />
+                        <p:inputText value="#{customerCreateBean.customer.houseNumber}"/>
+                        <p:message for="street" />
 
-                    <p:outputLabel value="#{msg.postcode}:" />
-                    <p:inputText value="#{customerCreateBean.customer.postcode}"/>
-                    <p:message for="street" />
+                        <p:outputLabel value="#{msg.postcode}:" />
+                        <p:inputText value="#{customerCreateBean.customer.postcode}"/>
+                        <p:message for="street" />
 
-                    <p:outputLabel value="#{msg.city}:" />
-                    <p:inputText value="#{customerCreateBean.customer.city}"/>
-                    <p:message for="street" />
+                        <p:outputLabel value="#{msg.city}:" />
+                        <p:inputText value="#{customerCreateBean.customer.city}"/>
+                        <p:message for="street" />
 
-                    <p:outputLabel value="#{msg.country}:" />
-                    <p:inputText value="#{customerCreateBean.customer.country}"/>
-                    <p:message for="street" />
+                        <p:outputLabel value="#{msg.country}:" />
+                        <p:inputText value="#{customerCreateBean.customer.country}"/>
+                        <p:message for="street" />
 
-                    <p:outputLabel value="#{msg.phone_private}:" />
-                    <p:inputText value="#{customerCreateBean.customer.telefonPrivate}"/>
-                    <p:message for="street" />
+                        <p:outputLabel value="#{msg.phone_private}:" />
+                        <p:inputText value="#{customerCreateBean.customer.telefonPrivate}"/>
+                        <p:message for="street" />
 
-                    <p:outputLabel value="#{msg.phone_mobile}:" />
-                    <p:inputText value="#{customerCreateBean.customer.telefonMobile}"/>
-                    <p:message for="street" />
+                        <p:outputLabel value="#{msg.phone_mobile}:" />
+                        <p:inputText value="#{customerCreateBean.customer.telefonMobile}"/>
+                        <p:message for="street" />
 
-                    <p:outputLabel value="#{msg.fax}:" />
-                    <p:inputText value="#{customerCreateBean.customer.fax}"/>
-                    <p:message for="street" />
-                </h:panelGrid>
+                        <p:outputLabel value="#{msg.fax}:" />
+                        <p:inputText value="#{customerCreateBean.customer.fax}"/>
+                        <p:message for="street" />
+                    </h:panelGrid>
 
-                    <p:commandButton value="#{msg.submit}" actionListener="#{customerCreateBean.save}" update="growl" process="@this"/>
+                    <p:commandButton validateClient="true" value="#{msg.submit}" actionListener="#{customerCreateBean.save}" update="growl" process="@this"/>
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -1,40 +1,41 @@
 package beans.order;
 
-import model.Order;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import java.util.*;
 
-public class LazyOrderDataModel extends LazyDataModel<Order> {
+public class LazyOrderDataModel extends LazyDataModel<LazyOrder> {
 
-    private List<Order> datasource;
+    private List<LazyOrder> datasource;
 
-    public LazyOrderDataModel(List<Order> datasource) {
+    public LazyOrderDataModel(List<LazyOrder> datasource) {
         this.datasource = datasource;
     }
 
     @Override
-    public Order getRowData(String rowKey) {
-        for(Order order : datasource) {
-            if(String.valueOf(order.getId()).equals(rowKey))
+    public LazyOrder getRowData(String rowKey) {
+        int iRowKey = Integer.parseInt(rowKey);
+        for(LazyOrder order : datasource) {
+            if(order.getId() == iRowKey) {
                 return order;
+            }
         }
 
         return null;
     }
 
     @Override
-    public Object getRowKey(Order order) {
+    public Object getRowKey(LazyOrder order) {
         return order.getId();
     }
 
     @Override
-    public List<Order> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters) {
-        List<Order> data = new ArrayList<Order>();
+    public List<LazyOrder> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters) {
+        List<LazyOrder> data = new ArrayList<LazyOrder>();
 
         //filter
-        for(Order order : datasource) {
+        for(LazyOrder order : datasource) {
             boolean match = true;
 
             if (filters != null) {

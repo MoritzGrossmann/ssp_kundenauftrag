@@ -8,7 +8,7 @@
         <class>model.ProductionOrder</class>
         <class>model.Order</class>
         <properties>
-            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
             <property name="eclipselink.ddl-generation.output-mode" value="database" />
             <property name="eclipselink.deploy-on-startup" value="true"/>
             <property name="eclipselink.target-server" value="Glassfish"/>
