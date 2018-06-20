@@ -8,6 +8,8 @@
         <class>model.ProductionOrder</class>
         <class>model.Order</class>
         <class>model.User</class>
+        <class>model.UserGroup</class>
+        <class>model.UserUserGroup</class>
         <properties>
             <property name="eclipselink.ddl-generation" value="create-tables"/>
             <property name="eclipselink.ddl-generation.output-mode" value="database" />

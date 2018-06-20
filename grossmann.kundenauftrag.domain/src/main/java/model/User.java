@@ -2,16 +2,13 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -557220040253974289L;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +21,9 @@ public class User implements Serializable {
     @Column(name = "pass")
     private String pass;
 
-    // @OneToMany
-    // private List<Group> groups = new ArrayList<Group>();
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Collection<UserUserGroup> userUserGroups;
 
-    @Column(name = "group_name")
-    private String groupName;
 
     public int getUserId() {
         return userId;
@@ -54,11 +49,11 @@ public class User implements Serializable {
         this.pass = pass;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public Collection<UserUserGroup> getUserUserGroups() {
+        return userUserGroups;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setUserUserGroups(Collection<UserUserGroup> userUserGroups) {
+        this.userUserGroups = userUserGroups;
     }
 }
