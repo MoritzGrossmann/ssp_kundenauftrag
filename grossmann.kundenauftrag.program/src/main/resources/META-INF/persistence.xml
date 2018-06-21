@@ -15,7 +15,7 @@
             <property name="eclipselink.ddl-generation.output-mode" value="database" />
             <property name="eclipselink.deploy-on-startup" value="true"/>
             <property name="eclipselink.jdbc.bind-parameters" value="true"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/customerOrder"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/customerorder"/>
             <property name="javax.persistence.jdbc.user" value="customer"/>
             <property name="javax.persistence.jdbc.password" value="customer"/>
         </properties>

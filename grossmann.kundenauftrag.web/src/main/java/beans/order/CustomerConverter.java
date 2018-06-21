@@ -15,8 +15,8 @@ public class CustomerConverter implements Converter {
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String value) {
         if(value != null && value.trim().length() > 0) {
             try {
-                OrderCreateBean service = (OrderCreateBean) facesContext.getExternalContext().getApplicationMap().get("orderCreateBean");
-                return service.getCustomers().get(Integer.parseInt(value));
+                CustomerService service = (CustomerService) facesContext.getExternalContext().getApplicationMap().get("customerService");
+                return service.getCustomer().get(Integer.parseInt(value)-1);
             } catch(NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid Customer."));
             }

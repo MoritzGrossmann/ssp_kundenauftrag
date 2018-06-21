@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -22,7 +23,7 @@ public class User implements Serializable {
     private String pass;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Collection<UserUserGroup> userUserGroups;
+    private Collection<UserUserGroup> userUserGroups = new ArrayList<>();
 
 
     public int getUserId() {

@@ -160,6 +160,10 @@ public class Customer {
         this.country = country;
     }
 
+    public String getDisplayName() {
+        return String.format("%s %s", this.firstname, this.lastname);
+    }
+
     @JsonIgnore
     public Collection<Order> getOrders() {
         return orders;

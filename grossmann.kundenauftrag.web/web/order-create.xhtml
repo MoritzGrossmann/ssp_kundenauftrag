@@ -24,16 +24,16 @@
 
                 <h:form id="form">
 
-                    <p:growl id="msg" />
+                    <p:growl id="growl" />
 
                     <h:panelGrid columns="2" cellpadding="5" id="grid">
 
                         <p:outputLabel value="#{msg.customer_name_singular}:"/>
-                        <p:selectOneListbox id="advanced" value="#{orderCreateBean.selectedCustomer}" converter="customerConverter" var="c" filter="true" filterMatchMode="contains">
-                            <f:selectItems value="#{orderCreateBean.customers}" var="customer" itemLabel="#{customer.firstname} #{customer.lastname}" itemValue="#{customer}" />
-
+                        <p:selectOneListbox id="advanced" value="#{orderCreateBean.customer}" converter="customerConverter" var="c" filter="true" effect="fade" filterMatchMode="contains">
+                            <p:ajax event="change" update="@this" />
+                            <f:selectItems value="#{orderCreateBean.customers}" var="customer" itemLabel="#{customer.displayName}" itemValue="#{customer}" />
                             <p:column>
-                                <h:outputText value="#{c.firstname} #{c.lastname}" />
+                                <h:outputText value="#{c.displayName}" />
                             </p:column>
                         </p:selectOneListbox>
 
@@ -41,18 +41,7 @@
                         <p:calendar id="datetime" value="#{orderCreateBean.dateTime}" pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:panelGrid>
 
-                    <p:commandButton value="#{msg.submit}" icon="ui-icon-check" action="#{orderCreateBean.submit()}" update="grid">
-                        <p:ajax update="msg" listener="#{orderCreateBean.submit}"/>
-                    </p:commandButton>
-
-                    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                            <h:outputText value="Datetime:" />
-                            <h:outputText value="#{orderCreateBean.dateTime}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:panelGrid>
-                    </p:dialog>
+                    <p:commandButton value="#{msg.submit}" icon="ui-icon-check" action="#{orderCreateBean.submit()}" update="growl"/>
                 </h:form>
             </ui:define>
         </ui:composition>

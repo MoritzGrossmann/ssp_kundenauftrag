@@ -40,13 +40,13 @@ public class GenericRepository<T> implements Repository<T>, Serializable {
     }
 
     public T getById(int id) {
-        T item = entityManager.find(type, id);
-        return item;
+        return entityManager.find(type, id);
     }
 
     public void insert(T obj) {
         entityManager.getTransaction().begin();
         entityManager.persist(obj);
+        entityManager.flush();
         entityManager.getTransaction().commit();
     }
 
@@ -54,7 +54,10 @@ public class GenericRepository<T> implements Repository<T>, Serializable {
         entityManager.remove(item);
     }
 
-    public void update(T item) {
-        entityManager.merge(item);
+    public T update(T item) {
+        entityManager.getTransaction().begin();
+        T newitem = entityManager.merge(item);
+        entityManager.getTransaction().commit();
+        return newitem;
     }
 }

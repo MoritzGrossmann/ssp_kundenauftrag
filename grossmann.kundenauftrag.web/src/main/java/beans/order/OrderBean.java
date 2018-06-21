@@ -1,6 +1,7 @@
 package beans.order;
 
 import database.OrderRepository;
+import model.Order;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
 
@@ -9,6 +10,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @ManagedBean
@@ -32,7 +34,8 @@ public class OrderBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        lazyModel = new LazyOrderDataModel(orderRepository.getAll().stream().map(LazyOrder::new).collect(Collectors.toList()));
+        List<Order> orders = orderRepository.getAll();
+        lazyModel = new LazyOrderDataModel(orders.stream().map(LazyOrder::new).collect(Collectors.toList()));
     }
 
     public LazyDataModel<LazyOrder> getLazyModel() {

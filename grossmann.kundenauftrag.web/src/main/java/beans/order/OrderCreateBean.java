@@ -9,14 +9,15 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class OrderCreateBean implements Serializable {
 
     @EJB
@@ -25,9 +26,12 @@ public class OrderCreateBean implements Serializable {
     @EJB
     private CustomerRepository customerRepository;
 
+    @ManagedProperty("#{customerService}")
+    private CustomerService customerService;
+
     @PostConstruct
     public void init() {
-        this.customers = customerRepository.getAll();
+        this.customers = customerService.getCustomer();
     }
 
     public void submit() {
@@ -37,8 +41,8 @@ public class OrderCreateBean implements Serializable {
             if (order.getId() > 0) {
                 orderRepository.update(order);
             } else {
-                selectedCustomer.addOrder(this.order);
-                customerRepository.update(selectedCustomer);
+                customer.addOrder(this.order);
+                customerRepository.update(customer);
             }
             context.addMessage(null, new FacesMessage("Succcess",  "Order saved successful") );
         } catch (Exception e) {
@@ -54,14 +58,14 @@ public class OrderCreateBean implements Serializable {
 
     private Order order = new Order();
 
-    private Customer selectedCustomer;
+    private Customer customer;
 
-    public Customer getSelectedCustomer() {
-        return selectedCustomer;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setSelectedCustomer(Customer selectedCustomer) {
-        this.selectedCustomer = selectedCustomer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     private List<Customer> customers;
@@ -82,7 +86,7 @@ public class OrderCreateBean implements Serializable {
         this.orderId = orderId;
         this.order = orderRepository.getById(orderId);
         this.dateTime = new Date(this.order.getDateTime().getTime());
-        this.selectedCustomer = order.getCustomer();
+        this.customer = order.getCustomer();
     }
 
     public int getCustomerId() {
@@ -91,7 +95,7 @@ public class OrderCreateBean implements Serializable {
 
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
-        selectedCustomer = customerRepository.getById(customerId);
+        customer = customerRepository.getById(customerId);
     }
 
     public Order getOrder() {
@@ -109,4 +113,6 @@ public class OrderCreateBean implements Serializable {
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
+
+    // TODO getter und setter für service
 }

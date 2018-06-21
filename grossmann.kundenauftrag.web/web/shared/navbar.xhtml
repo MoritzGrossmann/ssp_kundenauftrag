@@ -30,17 +30,12 @@
                     </p:submenu>
 
                     <p:menuitem value="#{msg.statistics}" outcome="chart" icon="fa fa-area-chart" />
+                    <p:submenu label="#{msg.language}" icon="fa fa-language">
+                        <p:menuitem value="Deutsch" action="#{language.setLocale('de')}" update="@all"/>
+                        <p:menuitem value="English" action="#{language.setLocale('en')}" update="@all"/>
+                    </p:submenu>
 
                     <f:facet name="options">
-                        <h:form>
-                            <h:panelGrid columns = "2">
-                                #{msg.language} :
-                                <h:selectOneMenu value = "#{language.locale}" onchange = "submit()"
-                                                 valueChangeListener = "#{language.localeChanged}">
-                                    <f:selectItems value = "#{language.countries}" />
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-                        </h:form>
                         <p:commandButton type="button" value="Logout" actionListener="#{authentication.logout()}" icon="ui-icon-extlink" />
                     </f:facet>
                 </p:menubar>

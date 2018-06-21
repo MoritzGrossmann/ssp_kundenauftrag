@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -14,7 +15,7 @@ public class UserGroup implements Serializable {
     private int id;
 
     @OneToMany(mappedBy = "userGroup", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Collection<UserUserGroup> userUserGroups;
+    private Collection<UserUserGroup> userUserGroups = new ArrayList<>();
 
     @Basic
     @Column(name = "name")
