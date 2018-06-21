@@ -1,4 +1,7 @@
+package main;
+
 import database.*;
+import importer.CustomerXmlImporter;
 import model.Customer;
 import model.User;
 import xml.CustomerImporter;
@@ -6,6 +9,7 @@ import xml.ParseXmlException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import java.io.File;
 import java.util.Collection;
@@ -19,9 +23,29 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Application is starting...");
 
-        System.out.println("Creating Tables if not exist");
-
         EntityManager entityManager = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT).createEntityManager();
+
+        System.out.println("Delete all existing Tables");
+
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createNativeQuery("DROP TABLE machine;");
+            query.executeUpdate();
+            entityManager.getTransaction().commit();
+        } catch (PersistenceException e) {
+            System.err.println(e.getMessage());
+        }
+
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createNativeQuery("DROP TABLE sequence;");
+            query.executeUpdate();
+            entityManager.getTransaction().commit();
+        } catch (PersistenceException e) {
+            System.err.println(e.getMessage());
+        }
+
+        System.out.println("Creating Tables");
 
         Repository<Customer> customerRepository = new CustomerRepository();
 

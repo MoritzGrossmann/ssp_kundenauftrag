@@ -21,15 +21,15 @@
                 <p:growl id="messages"/>
                 <p:menubar styleClass="navbar">
                     <p:submenu label="#{msg.customer_name}" icon="ui-icon-pencil">
-                        <p:menuitem value="#{msg.showall}" icon="fa fa-users" outcome="customer"/>
-                        <p:menuitem value="#{msg.create}" icon="fa fa-user-plus" outcome="customer-create"/>
+                        <p:menuitem value="#{msg.showall}" icon="fa fa-users" outcome="/protected/customer"/>
+                        <p:menuitem value="#{msg.create}" icon="fa fa-user-plus" outcome="/protected/customer-create"/>
                     </p:submenu>
                     <p:submenu label="#{msg.order_name}" icon="ui-icon-pencil">
-                        <p:menuitem value="#{msg.showall}" icon="fa fa-th-list" outcome="orders"/>
-                        <p:menuitem value="#{msg.create}" icon="ui-icon-pencil" outcome="order-create"/>
+                        <p:menuitem value="#{msg.showall}" icon="fa fa-th-list" outcome="/protected/orders"/>
+                        <p:menuitem value="#{msg.create}" icon="ui-icon-pencil" outcome="/protected/order-create"/>
                     </p:submenu>
 
-                    <p:menuitem value="#{msg.statistics}" outcome="chart" icon="fa fa-area-chart" />
+                    <p:menuitem value="#{msg.statistics}" outcome="/protected/chart" icon="fa fa-area-chart" />
                     <p:submenu label="#{msg.language}" icon="fa fa-language">
                         <p:menuitem value="Deutsch" action="#{language.setLocale('de')}" update="@all"/>
                         <p:menuitem value="English" action="#{language.setLocale('en')}" update="@all"/>
@@ -37,7 +37,8 @@
 
                     <f:facet name="options">
                         <h:form>
-                            <p:commandButton update="@all" value="Logout" actionListener="#{authentication.logout}" icon="ui-icon-extlink" />
+                            <p:commandButton rendered="#{not empty request.remoteUser}" update="@all" value="Logout #{request.remoteUser}" actionListener="#{authentication.logout}" icon="ui-icon-extlink" />
+                            <p:button rendered="#{empty request.remoteUser}" update="@all" value="Login" outcome="/protected/customer"/>
                         </h:form>
                     </f:facet>
                 </p:menubar>

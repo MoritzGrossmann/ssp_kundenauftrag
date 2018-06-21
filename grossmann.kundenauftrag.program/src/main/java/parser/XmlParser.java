@@ -1,3 +1,5 @@
+package parser;
+
 import xml.ParseXmlException;
 
 public interface XmlParser<T> {

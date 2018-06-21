@@ -1,8 +1,12 @@
+package importer;
+
 import model.Customer;
 import org.jdom2.Element;
 import org.jdom2.input.DOMBuilder;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
+import parser.CustomerParser;
+import parser.XmlParser;
 import xml.CustomerImporter;
 import xml.ParseXmlException;
 

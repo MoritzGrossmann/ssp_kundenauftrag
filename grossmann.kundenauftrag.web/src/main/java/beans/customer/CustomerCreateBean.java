@@ -201,7 +201,7 @@ public class CustomerCreateBean implements Serializable {
                 customerRepository.update(customer);
             }
 
-            FacesContext.getCurrentInstance().getExternalContext().redirect("customer-detail.xhtml?id=" + customer.getId());
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/protected/customer-detail.xhtml?id=" + customer.getId());
 
         } catch (Exception e) {
             FacesMessage msg = new FacesMessage(msgs.getString("save_error"), e.getMessage());

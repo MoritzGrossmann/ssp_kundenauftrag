@@ -1,3 +1,5 @@
+package parser;
+
 import model.Customer;
 import org.jdom2.Element;
 import xml.ParseXmlException;

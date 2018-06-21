@@ -28,9 +28,8 @@
         <display-name>Admin Access</display-name>
         <web-resource-collection>
             <web-resource-name>Admin Area</web-resource-name>
-            <url-pattern>/*</url-pattern>
-            <url-pattern>/customer-create.xhtml</url-pattern>
-            <url-pattern>/order-create.xhtml</url-pattern>
+            <url-pattern>/protected/customer-create.xhtml</url-pattern>
+            <url-pattern>/protected/order-create.xhtml</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -46,7 +45,7 @@
         <display-name>All Access</display-name>
         <web-resource-collection>
             <web-resource-name>None Protected Area</web-resource-name>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/protected/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
