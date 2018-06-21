@@ -38,7 +38,7 @@
                         </p:selectOneListbox>
 
                         <p:outputLabel for="datetime" value="#{msg.date}:" />
-                        <p:calendar id="datetime" value="#{orderCreateBean.dateTime}" pattern="MM/dd/yyyy HH:mm:ss" />
+                        <p:calendar id="datetime" value="#{orderCreateBean.dateTime}" pattern="MM/dd/yyyy HH:mm:ss" required="true" requiredMessage="#{msg.validate_date}"/>
                     </h:panelGrid>
 
                     <p:commandButton value="#{msg.submit}" icon="ui-icon-check" action="#{orderCreateBean.submit()}" update="growl"/>

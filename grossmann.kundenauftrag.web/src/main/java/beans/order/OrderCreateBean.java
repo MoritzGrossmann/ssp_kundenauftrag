@@ -114,5 +114,13 @@ public class OrderCreateBean implements Serializable {
         this.dateTime = dateTime;
     }
 
+    public CustomerService getCustomerService() {
+        return customerService;
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
     // TODO getter und setter für service
 }

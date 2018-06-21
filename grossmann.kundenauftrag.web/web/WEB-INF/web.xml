@@ -25,10 +25,12 @@
     </context-param>
 
     <security-constraint>
-        <display-name>All Access</display-name>
+        <display-name>Admin Access</display-name>
         <web-resource-collection>
-            <web-resource-name>None Protected Area</web-resource-name>
+            <web-resource-name>Admin Area</web-resource-name>
             <url-pattern>/*</url-pattern>
+            <url-pattern>/customer-create.xhtml</url-pattern>
+            <url-pattern>/order-create.xhtml</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -40,6 +42,29 @@
         </user-data-constraint>
     </security-constraint>
 
+    <security-constraint>
+        <display-name>All Access</display-name>
+        <web-resource-collection>
+            <web-resource-name>None Protected Area</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>user</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!--
+    <error-page>
+        <error-code>403</error-code>
+        <location>/shared/forbidden.xhtml</location>
+    </error-page>
+    !-->
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>JDBCRealm</realm-name>

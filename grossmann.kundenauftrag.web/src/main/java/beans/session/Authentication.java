@@ -3,14 +3,17 @@ package beans.session;
 import database.UserRepository;
 import model.User;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 
-@Named
+@ManagedBean
+@SessionScoped
 public class Authentication implements Serializable {
 
     /**
@@ -33,9 +36,13 @@ public class Authentication implements Serializable {
         return user;
     }
 
-    public String logout() {
+    public void logout() {
         ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().invalidate();
-        return "index";
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isInRole(String role) {

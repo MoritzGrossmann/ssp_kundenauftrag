@@ -28,15 +28,17 @@
 
                     <h:panelGrid columns="3" cellpadding="5" id="grid">
                         <p:outputLabel value="#{msg.firstname}:"/>
-                        <p:inputText id="firstname" value="#{customerCreateBean.firstname}" required="true"/>
+                        <p:inputText id="firstname" value="#{customerCreateBean.firstname}" required="true" requiredMessage="#{msg.validate_firstname}"/>
                         <p:message for="firstname" />
 
                         <p:outputLabel value="#{msg.lastname}:"/>
-                        <p:inputText id="lastname" value="#{customerCreateBean.lastname}" required="true"/>
+                        <p:inputText id="lastname" value="#{customerCreateBean.lastname}" required="true" requiredMessage="#{msg.validate_lastname}"/>
                         <p:message for="lastname" />
 
                         <p:outputLabel value="#{msg.email}:" />
-                        <p:inputText id="email" value="#{customerCreateBean.email}" required="true"/>
+                        <p:inputText id="email" value="#{customerCreateBean.email}" required="true" requiredMessage="#{msg.validate_email}">
+                            <f:validator validatorId="emailValidator" />
+                        </p:inputText>
                         <p:message for="email" />
 
                         <p:outputLabel value="#{msg.street}:" />
