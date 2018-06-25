@@ -1,10 +1,10 @@
 package beans;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
 import java.io.Serializable;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class LayoutBean implements Serializable
 {

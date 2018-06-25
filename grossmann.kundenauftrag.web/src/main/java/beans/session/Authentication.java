@@ -3,16 +3,16 @@ package beans.session;
 import database.UserRepository;
 import model.User;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class Authentication implements Serializable {
 

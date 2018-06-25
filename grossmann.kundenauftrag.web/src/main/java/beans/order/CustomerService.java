@@ -5,10 +5,10 @@ import model.Customer;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import java.util.List;
 
-@ManagedBean(name="customerService", eager = true)
+@Named
 @ApplicationScoped
 public class CustomerService {
 

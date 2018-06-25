@@ -1,8 +1,8 @@
 package beans;
 
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import java.io.Serializable;
 
-@ManagedBean
+@Named
 public class UserManagementBean implements Serializable {
 }
