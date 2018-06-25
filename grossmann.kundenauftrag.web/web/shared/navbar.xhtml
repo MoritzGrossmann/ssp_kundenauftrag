@@ -18,7 +18,7 @@
     <h:body>
         <ui:composition>
             <h:form>
-                <p:growl id="messages"/>
+                <p:growl id="messages" showDetail="true"/>
                 <p:menubar styleClass="navbar">
                     <p:submenu label="#{msg.customer_name}" icon="ui-icon-pencil">
                         <p:menuitem value="#{msg.showall}" icon="fa fa-users" outcome="/protected/customer"/>

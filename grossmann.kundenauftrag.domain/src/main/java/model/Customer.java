@@ -1,7 +1,5 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,7 +57,7 @@ public class Customer {
     @Column(name = "country")
     private String country= "";
 
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     private Collection<Order> orders = new ArrayList<Order>();
 
     //region Getter and Setter
@@ -164,7 +162,6 @@ public class Customer {
         return String.format("%s %s", this.firstname, this.lastname);
     }
 
-    @JsonIgnore
     public Collection<Order> getOrders() {
         return orders;
     }

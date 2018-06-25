@@ -16,11 +16,18 @@
             <p:panel header="Login">
                 <h:form id="loginForm" onsubmit="document.getElementById('loginForm').action='j_security_check';" prependId="false">
                     <p:panelGrid columns="2" styleClass="ui-noborder">
-                        <p:outputLabel for="j_username" value="#{msg.username}"/>
-                        <p:inputText id="j_username" name="j_username"/>
-
-                        <p:outputLabel for="j_password" value="#{msg.password}"/>
-                        <p:password id="j_password" name="j_password"/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon">
+                                <i class="fa fa-user"/>
+                            </span>
+                            <p:inputText id="j_username" name="j_username" placeholder="#{msg.username}"/>
+                        </div>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon">
+                                <i class="fa fa-key"/>
+                            </span>
+                            <p:password id="j_password" name="j_password" placeholder="#{msg.password}"/>
+                        </div>
 
                         <p:commandButton id="login" value="Login" ajax="false"/>
                     </p:panelGrid>

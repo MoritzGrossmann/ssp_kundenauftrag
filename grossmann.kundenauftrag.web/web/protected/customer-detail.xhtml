@@ -70,23 +70,31 @@
                     </p:column>
 
                     <p:column>
-                        <h:link value="#{msg.show}" outcome="order-detail">
+                        <p:commandButton value="#{msg.show}" outcome="order-detail" icon="fa fa-search">
                             <f:param name="id" value="#{order.id}"/>
-                        </h:link>
+                        </p:commandButton>
                     </p:column>
                 </p:dataTable>
 
 
-                <p:panelGrid columns="2" cellPadding="5" styleClass="ui-noborder">
-                    <p:button outcome="customer-create" value="#{msg.edit}" icon="ui-icon-pencil">
-                        <f:param name="id" value="#{customerDetailBean.id}" />
-                    </p:button>
+                    <p:panelGrid columns="3" cellPadding="5" styleClass="ui-noborder">
+                        <p:button outcome="customer-create" value="#{msg.edit}" icon="ui-icon-pencil">
+                            <f:param name="id" value="#{customerDetailBean.id}" />
+                        </p:button>
 
-                    <p:button outcome="order-create" value="#{msg.order_add}" icon="ui-icon-plus">
-                        <f:param value="#{customerDetailBean.id}" name="customer_id"/>
-                    </p:button>
-                </p:panelGrid>
-                    </h:form>
+                        <p:button outcome="order-create" value="#{msg.order_add}" icon="ui-icon-plus">
+                            <f:param value="#{customerDetailBean.id}" name="customer_id"/>
+                        </p:button>
+
+                        <p:commandButton value="#{msg.delete}" actionListener="#{customerDetailBean.delete}" icon="fa fa-remove">
+                            <p:confirm header="#{msg.confirmation}" message="#{msg.sure}"/>
+                        </p:commandButton>
+                    </p:panelGrid>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

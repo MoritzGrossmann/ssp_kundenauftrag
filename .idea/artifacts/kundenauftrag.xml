@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="kundenauftrag">
+    <output-path>$PROJECT_DIR$/out/artifacts/kundenauftrag</output-path>
+    <root id="archive" name="kundenauftrag.war">
+      <element id="artifact" artifact-name="grossmann.kundenauftrag.web:war exploded" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/grossmann.kundenauftrag.web/web/WEB-INF/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -15,10 +15,13 @@ import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
 @ManagedBean
 @RequestScoped
 public class OrderCreateBean implements Serializable {
+
+    ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
     @EJB
     private OrderRepository orderRepository;
@@ -44,9 +47,9 @@ public class OrderCreateBean implements Serializable {
                 customer.addOrder(this.order);
                 customerRepository.update(customer);
             }
-            context.addMessage(null, new FacesMessage("Succcess",  "Order saved successful") );
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msgs.getString("save_success"), "Order saved successful") );
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage("Error",  e.getMessage()) );
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgs.getString("save_error"),  e.getMessage()));
         }
     }
 

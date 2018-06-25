@@ -1,11 +1,7 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 @Entity
 @Table(name = "production_order", schema = "customerorder")
 public class ProductionOrder {
@@ -29,7 +25,6 @@ public class ProductionOrder {
         this.id = id;
     }
 
-    @JsonIgnore
     public Order getOrder() {
         return this.order;
     }

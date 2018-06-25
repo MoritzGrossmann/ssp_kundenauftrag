@@ -1,7 +1,5 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class Order {
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private Collection<ProductionOrder> productionOrders = new ArrayList<ProductionOrder>();
 
     //region Getter and Setter
@@ -45,7 +43,6 @@ public class Order {
         this.dateTime = dateTime;
     }
 
-    @JsonIgnore
     public Customer getCustomer() {
         return customer;
     }

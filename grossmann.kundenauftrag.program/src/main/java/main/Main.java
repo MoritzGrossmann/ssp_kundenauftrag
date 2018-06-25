@@ -34,6 +34,7 @@ public class Main {
             entityManager.getTransaction().commit();
         } catch (PersistenceException e) {
             System.err.println(e.getMessage());
+            entityManager.getTransaction().rollback();
         }
 
         try {
@@ -43,6 +44,7 @@ public class Main {
             entityManager.getTransaction().commit();
         } catch (PersistenceException e) {
             System.err.println(e.getMessage());
+            entityManager.getTransaction().rollback();
         }
 
         System.out.println("Creating Tables");

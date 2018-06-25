@@ -4,6 +4,7 @@ import database.OrderRepository;
 import database.ProductionOrderRepository;
 import model.Order;
 import model.ProductionOrder;
+import webservice.model.Customer;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -28,7 +29,8 @@ public class OrderResource {
             if (order == null) {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
-            return Response.status(Response.Status.OK).entity(order).build();
+            webservice.model.Order webOrder= new webservice.model.Order(order);
+            return Response.status(Response.Status.OK).entity(webOrder).build();
         } catch (NumberFormatException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
         }
@@ -44,7 +46,7 @@ public class OrderResource {
             if (order == null) {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
-            return Response.status(Response.Status.OK).entity(order.getCustomer()).build();
+            return Response.status(Response.Status.OK).entity(new Customer(order.getCustomer())).build();
         } catch (NumberFormatException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
         }
