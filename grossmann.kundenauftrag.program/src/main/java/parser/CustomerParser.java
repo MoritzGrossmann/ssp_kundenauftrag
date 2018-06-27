@@ -41,7 +41,7 @@ public class CustomerParser implements XmlParser<Customer> {
         this.element = xmlElement;
     }
 
-    private Element element;
+    private final Element element;
 
     public Customer parse() throws ParseXmlException {
         Customer customer = new Customer();

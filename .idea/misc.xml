@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <pattern value="model.UserUserGroup" method="getId" />
+    <pattern value="model.UserUserGroup" method="getUser" />
+    <pattern value="model.UserUserGroup" method="getUserGroup" />
+    <pattern value="model.UserUserGroup" method="setId" />
+    <pattern value="model.UserUserGroup" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

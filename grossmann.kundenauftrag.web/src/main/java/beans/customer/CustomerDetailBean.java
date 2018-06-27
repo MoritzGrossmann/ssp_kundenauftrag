@@ -3,7 +3,6 @@ package beans.customer;
 import database.CustomerRepository;
 import model.Customer;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -16,16 +15,11 @@ import java.util.ResourceBundle;
 @RequestScoped
 public class CustomerDetailBean implements Serializable {
 
-    private ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+    private final ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
     @EJB
     private
     CustomerRepository customerRepository;
-
-    @PostConstruct
-    public void init() {
-
-    }
 
     private int id;
 

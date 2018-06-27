@@ -58,7 +58,7 @@ public class Customer {
     private String country= "";
 
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
-    private Collection<Order> orders = new ArrayList<Order>();
+    private Collection<Order> orders = new ArrayList<>();
 
     //region Getter and Setter
 

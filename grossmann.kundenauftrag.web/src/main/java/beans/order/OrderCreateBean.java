@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 @RequestScoped
 public class OrderCreateBean implements Serializable {
 
-    ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+    final ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
     @EJB
     private OrderRepository orderRepository;

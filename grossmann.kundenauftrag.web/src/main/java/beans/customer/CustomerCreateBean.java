@@ -20,12 +20,7 @@ public class CustomerCreateBean implements Serializable {
     private
     CustomerRepository customerRepository;
 
-    @PostConstruct
-    public void init() {
-
-    }
-
-    ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+    final ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
     //region Form-Parameter
 

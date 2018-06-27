@@ -22,7 +22,7 @@ public class Language implements Serializable{
     /**
      * Map mit allen verfügbaren Sprachen
      */
-    private static Map<String,Object> countries;
+    private static final Map<String,Object> countries;
     static {
 
         countries = new LinkedHashMap<>();

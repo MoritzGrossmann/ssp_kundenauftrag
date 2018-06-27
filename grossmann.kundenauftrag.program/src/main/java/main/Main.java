@@ -75,9 +75,7 @@ public class Main {
             System.out.println("Creating Usergroups");
 
             if (userGroupRepository.getAll().size() < 2) {
-                userMockup.getUserGroupes().forEach((key, value) -> {
-                    userGroupRepository.insert(value);
-                });
+                userMockup.getUserGroupes().forEach((key, value) -> userGroupRepository.insert(value));
             } else {
                 System.err.println("Usergroups already exist");
             }

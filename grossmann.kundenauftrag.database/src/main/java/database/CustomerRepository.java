@@ -27,7 +27,7 @@ public class CustomerRepository extends GenericRepository<Customer> {
      * @return
      */
     public List<Customer> getByName(String[] parts) {
-        List<Customer> customers = new ArrayList<Customer>();
+        List<Customer> customers = new ArrayList<>();
 
         for(String part : parts) {
             customers.addAll(getByFirstname(part));

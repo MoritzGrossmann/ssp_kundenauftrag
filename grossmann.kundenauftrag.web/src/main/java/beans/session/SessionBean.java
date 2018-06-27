@@ -18,7 +18,6 @@ public class SessionBean{
      * @return
      */
     public String getBaseUrl() {
-        String baseUrl = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
-        return baseUrl;
+        return FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
     }
 }

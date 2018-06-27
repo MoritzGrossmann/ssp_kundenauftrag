@@ -20,7 +20,7 @@ public class ChartView implements Serializable {
 
     private LineChartModel dateModel;
 
-    ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+    final ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
     @EJB
     private OrderController orderController;
@@ -41,9 +41,7 @@ public class ChartView implements Serializable {
 
         Map<Month, Integer> monthStatistics = orderController.getMonthStatistics();
 
-        monthStatistics.forEach((key, value) -> {
-            orders.set(key.toString(), value);
-        });
+        monthStatistics.forEach((key, value) -> orders.set(key.toString(), value));
 
         dateModel.addSeries(orders);
 

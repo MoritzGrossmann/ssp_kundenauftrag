@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+<html
+        xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
@@ -81,10 +81,10 @@
 
                     <p:panel id="basic" header="#{msg.orderItem_add}" style="margin-bottom:20px; margin-top: 20px">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:outputLabel value="#{msg.productId}:" />
+                            <p:outputLabel value="#{msg.productId}:" for="productId"/>
                             <input id="productId" data-bind="value: productId" type="number"/>
 
-                            <p:outputLabel value="#{msg.count}:" />
+                            <p:outputLabel value="#{msg.count}:" for="count"/>
                             <input id="count" data-bind="value: count" type="number"/>
                         </h:panelGrid>
                         <button data-bind="click: addOrderItem">

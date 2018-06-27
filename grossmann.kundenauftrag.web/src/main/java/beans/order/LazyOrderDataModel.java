@@ -7,7 +7,7 @@ import java.util.*;
 
 public class LazyOrderDataModel extends LazyDataModel<LazyOrder> {
 
-    private List<LazyOrder> datasource;
+    private final List<LazyOrder> datasource;
 
     public LazyOrderDataModel(List<LazyOrder> datasource) {
         this.datasource = datasource;
@@ -32,27 +32,25 @@ public class LazyOrderDataModel extends LazyDataModel<LazyOrder> {
 
     @Override
     public List<LazyOrder> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters) {
-        List<LazyOrder> data = new ArrayList<LazyOrder>();
+        List<LazyOrder> data = new ArrayList<>();
 
         //filter
         for(LazyOrder order : datasource) {
             boolean match = true;
 
             if (filters != null) {
-                for (Iterator<String> it = filters.keySet().iterator(); it.hasNext();) {
+                for (String s : filters.keySet()) {
                     try {
-                        String filterProperty = it.next();
-                        Object filterValue = filters.get(filterProperty);
-                        String fieldValue = String.valueOf(order.getClass().getField(filterProperty).get(order));
+                        Object filterValue = filters.get(s);
+                        String fieldValue = String.valueOf(order.getClass().getField(s).get(order));
 
-                        if(filterValue == null || fieldValue.startsWith(filterValue.toString())) {
+                        if (filterValue == null || fieldValue.startsWith(filterValue.toString())) {
                             match = true;
-                        }
-                        else {
+                        } else {
                             match = false;
                             break;
                         }
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         match = false;
                     }
                 }
@@ -65,7 +63,7 @@ public class LazyOrderDataModel extends LazyDataModel<LazyOrder> {
 
         //sort
         if(sortField != null) {
-            Collections.sort(data, new LazySorter(sortField, sortOrder));
+            data.sort(new LazySorter(sortField, sortOrder));
         }
 
         //rowCount

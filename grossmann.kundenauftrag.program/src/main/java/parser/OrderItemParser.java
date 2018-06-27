@@ -10,7 +10,7 @@ public class OrderItemParser implements XmlParser<OrderItem> {
 
     private static final String COUNT_XML_PROPERTY = "Count";
 
-    private Element element;
+    private final Element element;
 
     @Override
     public OrderItem parse() throws ParseXmlException {

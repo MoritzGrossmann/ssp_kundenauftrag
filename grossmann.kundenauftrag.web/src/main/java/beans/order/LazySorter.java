@@ -9,9 +9,9 @@ import java.util.Comparator;
  */
 public class LazySorter implements Comparator<LazyOrder> {
 
-    private String sortField;
+    private final String sortField;
 
-    private SortOrder sortOrder;
+    private final SortOrder sortOrder;
 
     public LazySorter(String sortField, SortOrder sortOrder) {
         this.sortField = sortField;

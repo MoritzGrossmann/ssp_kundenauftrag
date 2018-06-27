@@ -34,6 +34,7 @@
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
+            <!--suppress WebProperties -->
             <role-name>admin</role-name>
         </auth-constraint>
         <user-data-constraint>
@@ -50,7 +51,10 @@
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
+            <!--suppress WebProperties -->
             <role-name>admin</role-name>
+
+            <!--suppress WebProperties -->
             <role-name>user</role-name>
         </auth-constraint>
         <user-data-constraint>

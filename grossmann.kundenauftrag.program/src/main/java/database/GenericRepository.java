@@ -13,7 +13,7 @@ public class GenericRepository<T> implements Repository<T>, Serializable {
 
     private static final String PERSISTENCE_UNIT = "customOrderDataPersistence";
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     private Class<T> type;
 

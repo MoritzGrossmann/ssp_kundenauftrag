@@ -29,9 +29,9 @@ public class OrderParser implements XmlParser<Order> {
         this.element = xmlOrder;
     }
 
-    private Element element;
+    private final Element element;
 
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @Override
     public Order parse() throws ParseXmlException {

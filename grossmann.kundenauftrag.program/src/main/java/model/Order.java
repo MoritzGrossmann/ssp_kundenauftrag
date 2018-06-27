@@ -23,7 +23,7 @@ public class Order {
     private Customer customer;
 
     @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
-    private Collection<OrderItem> orderItems = new ArrayList<OrderItem>();
+    private Collection<OrderItem> orderItems = new ArrayList<>();
 
     //region Getter and Setter
 

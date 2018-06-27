@@ -61,8 +61,7 @@ public class GenericRepository<T> implements Repository<T>, Serializable {
      * @return
      */
     public T getById(int id) {
-        T item = entityManager.find(type, id);
-        return item;
+        return entityManager.find(type, id);
     }
 
     /**
