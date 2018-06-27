@@ -4,13 +4,13 @@ import database.OrderRepository;
 import model.Order;
 
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
-@Named
+@ManagedBean(eager = true)
 @RequestScoped
 public class CustomerOrderBean implements Serializable {
 

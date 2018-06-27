@@ -9,12 +9,11 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Named
+@ManagedBean
 @ViewScoped
 public class OrderBean implements Serializable {
 

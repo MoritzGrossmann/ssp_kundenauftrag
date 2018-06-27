@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="grossmann-kundenauftrag-program" />
         <module name="grossmann.kundenauftrag.database" />
         <module name="grossmann.kundenauftrag.domain" />
         <module name="grossmann.kundenauftrag.program" />
@@ -14,6 +15,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="grossmann-kundenauftrag-program" target="8" />
       <module name="grossmann.kundenauftrag.database" target="1.8" />
       <module name="grossmann.kundenauftrag.domain" target="1.8" />
       <module name="grossmann.kundenauftrag.program" target="8" />

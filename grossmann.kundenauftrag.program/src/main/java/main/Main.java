@@ -9,43 +9,43 @@ import xml.ParseXmlException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import java.io.File;
 import java.util.Collection;
 
 public class Main {
 
-    private static File xmlFile = new File("grossmann.kundenauftrag.program/src/main/resources/customer.xml");
-
     private static final String PERSISTENCE_UNIT = "customOrderDataPersistence";
 
     public static void main(String[] args) {
-        System.out.println("Application is starting...");
+
+        if (args.length < 1) {
+            System.err.println("Please specify a data file");
+            return;
+        }
+
+        File dataFile = new File(args[0]);
+
+        if (!dataFile.exists()) {
+            System.err.println("Datafile don't exist");
+            return;
+        }
+
+        DatabaseCreator databaseCreator = new DatabaseCreator();
+
+        System.out.println("Create Database customerorder");
+
+        databaseCreator.createDatabase();
+
+        System.out.println("Create User customer");
+
+        databaseCreator.createUser();
+
+        System.out.println("Set privileges of User customer for Database customerOrder");
+
+        databaseCreator.setUserPrivileges();
 
         EntityManager entityManager = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT).createEntityManager();
-
-        System.out.println("Delete all existing Tables");
-
-        try {
-            entityManager.getTransaction().begin();
-            Query query = entityManager.createNativeQuery("DROP TABLE machine;");
-            query.executeUpdate();
-            entityManager.getTransaction().commit();
-        } catch (PersistenceException e) {
-            System.err.println(e.getMessage());
-            entityManager.getTransaction().rollback();
-        }
-
-        try {
-            entityManager.getTransaction().begin();
-            Query query = entityManager.createNativeQuery("DROP TABLE sequence;");
-            query.executeUpdate();
-            entityManager.getTransaction().commit();
-        } catch (PersistenceException e) {
-            System.err.println(e.getMessage());
-            entityManager.getTransaction().rollback();
-        }
 
         System.out.println("Creating Tables");
 
@@ -57,12 +57,12 @@ public class Main {
 
         if (customerRepository.getAll().size() ==0) {
 
-            System.out.printf("Reading Xml File %s\n", xmlFile.getAbsolutePath());
+            System.out.printf("Reading Xml File %s\n", dataFile.getAbsolutePath());
 
             CustomerImporter customerImporter = new CustomerXmlImporter();
             try {
-                Collection<Customer> customers = customerImporter.readFile(xmlFile);
-
+                Collection<Customer> customers = customerImporter.readFile(dataFile);
+                System.out.printf("%d customer found\n", customers.size());
                 customers.forEach(customerRepository::insert);
             } catch (ParseXmlException e) {
                 System.err.println(e.getMessage());
@@ -70,16 +70,19 @@ public class Main {
         }
 
         try {
-            System.out.println("Seeding users");
-
             UserMockup userMockup = new UserMockup();
 
+            System.out.println("Creating Usergroups");
 
             if (userGroupRepository.getAll().size() < 2) {
                 userMockup.getUserGroupes().forEach((key, value) -> {
                     userGroupRepository.insert(value);
                 });
+            } else {
+                System.err.println("Usergroups already exist");
             }
+
+            System.out.println("Creating Users");
 
             if (userRepository.getAll().size() < 2) {
                 User admin = userMockup.getAdminUser();
@@ -89,6 +92,8 @@ public class Main {
                 User user = userMockup.getUserUser();
                 user.addUserGroup(userGroupRepository.getByName("user"));
                 userRepository.insert(user);
+            } else {
+                System.err.println("Users already exist");
             }
 
         } catch (Exception e) {
@@ -97,7 +102,7 @@ public class Main {
 
 
         try {
-            System.out.println("Trying to create view with username and groupname");
+            System.out.println("Create view with username and groupname");
             entityManager.getTransaction().begin();
             Query query = entityManager.createNativeQuery(
                     "CREATE VIEW view_user_group AS SELECT u.username AS username, g.name AS groupname FROM user AS u " +
@@ -106,10 +111,12 @@ public class Main {
             query.executeUpdate();
             entityManager.getTransaction().commit();
         } catch (Exception e) {
+            entityManager.getTransaction().rollback();
             System.err.println("View already exist");
         }
 
-        System.out.println("Application is stopping...");
-
+        entityManager.getTransaction().begin();
+        entityManager.flush();
+        entityManager.getTransaction().commit();
     }
 }

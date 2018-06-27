@@ -29,7 +29,13 @@
                     <h:panelGrid columns="2" cellpadding="5" id="grid">
 
                         <p:outputLabel value="#{msg.customer_name_singular}:"/>
-                        <p:selectOneListbox id="advanced" value="#{orderCreateBean.customer}" converter="customerConverter" var="c" filter="true" effect="fade" filterMatchMode="contains">
+                        <p:selectOneListbox id="advanced" value="#{orderCreateBean.customer}"
+                                            converter="customerConverter"
+                                            var="c" filter="true"
+                                            effect="fade"
+                                            filterMatchMode="contains"
+                                            required="true"
+                                            requiredMessage="#{msg.validate_customer}">
                             <p:ajax event="change" update="@this" />
                             <f:selectItems value="#{orderCreateBean.customers}" var="customer" itemLabel="#{customer.displayName}" itemValue="#{customer}" />
                             <p:column>

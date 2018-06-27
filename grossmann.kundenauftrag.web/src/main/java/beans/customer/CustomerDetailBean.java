@@ -6,13 +6,13 @@ import model.Customer;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
-@Named
+@ManagedBean(eager = true)
 @RequestScoped
 public class CustomerDetailBean implements Serializable {
 

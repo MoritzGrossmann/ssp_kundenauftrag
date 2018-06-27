@@ -12,13 +12,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@Named
+@ManagedBean
 @RequestScoped
 public class OrderCreateBean implements Serializable {
 
@@ -48,7 +47,7 @@ public class OrderCreateBean implements Serializable {
                 customer.addOrder(this.order);
                 customerRepository.update(customer);
             }
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msgs.getString("save_success"), "Order saved successful") );
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msgs.getString("save_successful"), "Order saved successful") );
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgs.getString("save_error"),  e.getMessage()));
         }
