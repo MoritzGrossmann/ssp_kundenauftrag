@@ -1,7 +1,7 @@
 package parser;
 
 import model.Order;
-import model.ProductionOrder;
+import model.OrderItem;
 import org.jdom2.Element;
 import xml.ParseXmlException;
 
@@ -15,9 +15,9 @@ public class OrderParser implements XmlParser<Order> {
 
     private static final String DATETIME_XML_PROPERTY = "DateTime";
 
-    private static final String PRODUCTION_ORDERS_XML_PROPERTY = "ProductionOrders";
+    private static final String ORDERITEMS_XML_PROPERTY = "OrderItems";
 
-    private static final String PRODUCTION_ORDER_XML_PROPERTY = "ProductionOrder";
+    private static final String ORDERITEM_XML_PROPERTY = "OrderItem";
 
     public OrderParser(Element xmlOrder) {
         this.element = xmlOrder;
@@ -35,12 +35,12 @@ public class OrderParser implements XmlParser<Order> {
         order.setId(parseInt(xmlId));
         order.setDateTime(parseDateTime(this.element.getChildText(DATETIME_XML_PROPERTY, this.element.getNamespace())));
 
-        Collection<ProductionOrder> productionOrders = new ArrayList<>();
+        Collection<OrderItem> orderItems = new ArrayList<>();
 
-        Element xmlProductionOrders = this.element.getChild(PRODUCTION_ORDERS_XML_PROPERTY, this.element.getNamespace());
+        Element xmlOrderItems = this.element.getChild(ORDERITEMS_XML_PROPERTY, this.element.getNamespace());
 
-        for (Element xmlProductionOrder : xmlProductionOrders.getChildren(PRODUCTION_ORDER_XML_PROPERTY, xmlProductionOrders.getNamespace())) {
-            order.addProductionOrder(new ProductionOrderParser(xmlProductionOrder).parse());
+        for (Element xmlOrderItem : xmlOrderItems.getChildren(ORDERITEM_XML_PROPERTY, xmlOrderItems.getNamespace())) {
+            order.addProductionOrder(new OrderItemParser(xmlOrderItem).parse());
         }
 
         return order;

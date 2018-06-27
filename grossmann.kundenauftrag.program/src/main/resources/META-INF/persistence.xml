@@ -5,7 +5,7 @@
     <persistence-unit name="customOrderDataPersistence" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>model.Customer</class>
-        <class>model.ProductionOrder</class>
+        <class>model.OrderItem</class>
         <class>model.Order</class>
         <class>model.User</class>
         <class>model.UserGroup</class>

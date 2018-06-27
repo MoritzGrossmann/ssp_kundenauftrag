@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Repräsemtiert eine Kunden-Entität
+ */
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -212,6 +215,11 @@ public class Customer {
         result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
     }
+
+    /**
+     * Fügt dem Kunden einen Kundenauftrag hinzu und setzt den Kunden im Kundenauftrag
+     * @param order Kundenauftrag
+     */
     public void addOrder(Order order) {
         orders.add(order);
         order.setCustomer(this);

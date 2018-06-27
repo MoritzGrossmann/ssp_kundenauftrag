@@ -17,6 +17,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Bean für die Kundenauftrag Anlegen Ansicht
+ */
 @ManagedBean
 @RequestScoped
 public class OrderCreateBean implements Serializable {
@@ -42,12 +45,14 @@ public class OrderCreateBean implements Serializable {
         try {
             this.order.setDateTime(new java.sql.Date(this.dateTime.getTime()));
             if (order.getId() > 0) {
-                orderRepository.update(order);
+                order = orderRepository.update(order);
             } else {
                 customer.addOrder(this.order);
-                customerRepository.update(customer);
+                customer = customerRepository.update(customer);
+                order = (Order)customer.getOrders().toArray()[customer.getOrders().size()-1];
             }
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msgs.getString("save_successful"), "Order saved successful") );
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msgs.getString("save_successful"), "") );
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/protected/order-detail.xhtml?id=" + order.getId());
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msgs.getString("save_error"),  e.getMessage()));
         }

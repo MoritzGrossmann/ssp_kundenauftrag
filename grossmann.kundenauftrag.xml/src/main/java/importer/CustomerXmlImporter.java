@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasse zum Importieren einer Xml-Datendatei
+ */
 public class CustomerXmlImporter implements CustomerImporter {
 
     private File file;

@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <f:metadata>
-        <f:viewParam id="id" name="id" value="#{customerOrderBean.id}" />
+        <f:viewParam id="id" name="id" value="#{orderDetailBean.id}" />
     </f:metadata>
 
     <h:body>
@@ -20,7 +20,7 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:outputText id="orderId" value="#{customerOrderBean.id}" style="visibility: hidden"/>
+                <h:outputText id="orderId" value="#{orderDetailBean.id}" style="visibility: hidden"/>
                 <div id="order">
                     <p:toolbar>
                         <p:toolbarGroup align="left">
@@ -44,17 +44,29 @@
                                 <thead id="j_idt40_head">
                                     <tr role="row">
                                         <th id="j_idt40:j_idt27" class="ui-state-default" role="columnheader" aria-label="Identnummer" scope="col">
-                                            <span class="ui-column-title"><h:outputText value="#{msg.productionOrder_name}"/></span>
+                                            <span class="ui-column-title"><h:outputText value="#{msg.id}"/></span>
                                         </th>
-                                        <th id="j_idt40:j_idt28" class="ui-state-default" role="columnheader" aria-label="Identnummer" scope="col">
+                                        <th id="j_idt40:j_idt28" class="ui-state-default" role="columnheader" aria-label="ProductId" scope="col">
+                                            <span class="ui-column-title"><h:outputText value="#{msg.productId}"/></span>
+                                        </th>
+                                        <th id="j_idt40:j_idt29" class="ui-state-default" role="columnheader" aria-label="Count" scope="col">
+                                            <span class="ui-column-title"><h:outputText value="#{msg.count}"/></span>
+                                        </th>
+                                        <th id="j_idt40:j_idt30" class="ui-state-default" role="columnheader" aria-label="Identnummer" scope="col">
 
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody id="j_idt40_data" class="ui-datatable-data ui-widget-content" data-bind="foreach: productionOrders">
+                                <tbody id="j_idt40_data" class="ui-datatable-data ui-widget-content" data-bind="foreach: orderItems">
                                     <tr role="row">
                                         <td role="gridcell">
                                             <span data-bind="text: $data.id"/>
+                                        </td>
+                                        <td role="gridcell">
+                                            <span data-bind="text: $data.productId"/>
+                                        </td>
+                                        <td role="gridcell">
+                                            <span data-bind="text: $data.count"/>
                                         </td>
                                         <td>
                                             <button data-bind="click: $data.delete">
@@ -66,9 +78,21 @@
                             </table>
                         </div>
                     </div>
-                    <button data-bind="click: addOrder">
-                        <h:outputText value="#{msg.productionOrder_add}"/>
-                    </button>
+
+                    <p:panel id="basic" header="#{msg.orderItem_add}" style="margin-bottom:20px; margin-top: 20px">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:outputLabel value="#{msg.productId}:" />
+                            <input id="productId" data-bind="value: productId" type="number"/>
+
+                            <p:outputLabel value="#{msg.count}:" />
+                            <input id="count" data-bind="value: count" type="number"/>
+                        </h:panelGrid>
+                        <button data-bind="click: addOrderItem">
+                            <h:outputText value="#{msg.save}"/>
+                        </button>
+                    </p:panel>
+
+
                 </div>
             </ui:define>
         </ui:composition>

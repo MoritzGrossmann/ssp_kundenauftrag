@@ -4,6 +4,9 @@ import org.primefaces.model.SortOrder;
 
 import java.util.Comparator;
 
+/**
+ * Klasse zum sortieren der Lazy-Datalist
+ */
 public class LazySorter implements Comparator<LazyOrder> {
 
     private String sortField;

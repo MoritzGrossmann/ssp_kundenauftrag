@@ -2,9 +2,12 @@ package model;
 
 import javax.persistence.*;
 
+/**
+ * Repträsentiert eine Bestellposition-Entität
+ */
 @Entity
-@Table(name = "production_order", schema = "customerorder")
-public class ProductionOrder {
+@Table(name = "order_item", schema = "customerorder")
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,8 +15,16 @@ public class ProductionOrder {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Order order;
+
+    @Basic
+    @Column(name = "product_id")
+    private int productId;
+
+    @Basic
+    @Column(name = "count")
+    private int count;
 
     //region Getter and Setter
 
@@ -33,6 +44,22 @@ public class ProductionOrder {
         this.order = order;
     }
 
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
     //endregion
 
     @Override
@@ -40,7 +67,7 @@ public class ProductionOrder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ProductionOrder that = (ProductionOrder) o;
+        OrderItem that = (OrderItem) o;
 
         return id == that.id;
     }
@@ -50,10 +77,5 @@ public class ProductionOrder {
         int result = id;
         result = 31 * result;
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(this.id);
     }
 }

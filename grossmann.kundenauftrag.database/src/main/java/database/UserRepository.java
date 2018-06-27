@@ -9,6 +9,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * Repository zum laden, erstellen, löschen und aktuelisieren von Benutzern
+ */
 @Named
 @ApplicationScoped
 public class UserRepository extends GenericRepository<User> {
@@ -17,8 +20,11 @@ public class UserRepository extends GenericRepository<User> {
         super(User.class);
     }
 
-
-
+    /**
+     * Gibt einen Nutzer anhand seines Benutzernamen zurück
+     * @param name Benutzername
+     * @return
+     */
     public User getByName(String name) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);

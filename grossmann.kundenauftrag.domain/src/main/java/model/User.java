@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Repräsentiert eine Benutzer-Entität
+ */
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
@@ -25,6 +28,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Collection<UserUserGroup> userUserGroups = new ArrayList<>();
 
+    //region Getters and Setters
 
     public int getUserId() {
         return userId;
@@ -58,6 +62,12 @@ public class User implements Serializable {
         this.userUserGroups = userUserGroups;
     }
 
+    //endregion
+
+    /**
+     * Fügt dem Benutzer eine Benutzergruppe hinzu und fügt der Benutzergruppe den Benutzer hinzu (n:m)
+     * @param userGroup
+     */
     public void addUserGroup(UserGroup userGroup) {
         UserUserGroup userUserGroup = new UserUserGroup();
         userUserGroup.setUser(this);

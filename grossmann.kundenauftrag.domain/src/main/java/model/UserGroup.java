@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Reptäsentiert eine Benutzergruppen-Entität
+ */
 @Entity
 @Table(name = "usergroup")
 public class UserGroup implements Serializable {
@@ -20,6 +23,8 @@ public class UserGroup implements Serializable {
     @Basic
     @Column(name = "name")
     private String name;
+
+    //region Getters and Setter
 
     public int getId() {
         return id;
@@ -44,4 +49,6 @@ public class UserGroup implements Serializable {
     public void setUserUserGroups(Collection<UserUserGroup> userUserGroups) {
         this.userUserGroups = userUserGroups;
     }
+
+    //endregion
 }

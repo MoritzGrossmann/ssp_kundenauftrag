@@ -13,6 +13,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Bean für die Ansicht über alle Kundenaufträge
+ */
 @ManagedBean
 @ViewScoped
 public class OrderBean implements Serializable {
@@ -20,6 +23,9 @@ public class OrderBean implements Serializable {
     @EJB
     private OrderRepository orderRepository;
 
+    /**
+     * Model für die Lazy-Datalist in der order-View
+     */
     private LazyDataModel<LazyOrder> lazyModel;
 
     private LazyOrder selectedOrder;

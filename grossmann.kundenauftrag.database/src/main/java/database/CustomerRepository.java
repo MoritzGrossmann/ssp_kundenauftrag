@@ -11,6 +11,9 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Repository zum laden, erstellen, löschen und aktuelisieren von Kunden
+ */
 @Named
 @Stateless
 public class CustomerRepository extends GenericRepository<Customer> {
@@ -18,6 +21,11 @@ public class CustomerRepository extends GenericRepository<Customer> {
         super(Customer.class);
     }
 
+    /**
+     * Lädt eine Liste von Kunden anhand von Vor- und Nachname
+     * @param parts Array von String mit parts[0] = Vorname und parts[1] = nachname
+     * @return
+     */
     public List<Customer> getByName(String[] parts) {
         List<Customer> customers = new ArrayList<Customer>();
 

@@ -1,6 +1,6 @@
 import database.CustomerRepository;
 import database.OrderRepository;
-import database.ProductionOrderRepository;
+import database.OrderItemRepository;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -17,7 +17,7 @@ public class StartUp {
     private CustomerRepository customerRepository;
 
     @EJB
-    private ProductionOrderRepository productionOrderRepository;
+    private OrderItemRepository orderItemRepository;
 
     @EJB
     private OrderRepository orderRepository;

@@ -4,6 +4,9 @@ import model.Customer;
 import org.jdom2.Element;
 import xml.ParseXmlException;
 
+/**
+ * Parser Zum Konvertieren eines Xml-Objektes in eine Objekt der Klasse {@link Customer}
+ */
 public class CustomerParser implements XmlParser<Customer> {
 
     private static final String FIRSTNAME_XML_PROPERTY = "Firstname";

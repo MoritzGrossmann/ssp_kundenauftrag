@@ -10,7 +10,7 @@ public class Order {
 
     public Order(model.Order order) {
         this.id = order.getId();
-        this.productionOrders = order.getProductionOrders().stream().map(ProductionOrder::new).collect(Collectors.toList());
+        this.orderItems = order.getOrderItems().stream().map(OrderItem::new).collect(Collectors.toList());
         this.dateTime = order.getDateTime();
     }
 
@@ -18,7 +18,7 @@ public class Order {
 
     private Date dateTime;
 
-    private List<ProductionOrder> productionOrders;
+    private List<OrderItem> orderItems;
 
     public int getId() {
         return id;
@@ -36,11 +36,11 @@ public class Order {
         this.dateTime = dateTime;
     }
 
-    public List<ProductionOrder> getProductionOrders() {
-        return productionOrders;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setProductionOrders(List<ProductionOrder> productionOrders) {
-        this.productionOrders = productionOrders;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

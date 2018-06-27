@@ -5,6 +5,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ *Repräsentiert eine Kundenauftrag-Entität
+ */
 @Entity
 @Table(name = "customer_order", schema = "customerorder")
 public class Order {
@@ -23,7 +26,7 @@ public class Order {
     private Customer customer;
 
     @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
-    private Collection<ProductionOrder> productionOrders = new ArrayList<ProductionOrder>();
+    private Collection<OrderItem> orderItems = new ArrayList<OrderItem>();
 
     //region Getter and Setter
 
@@ -51,12 +54,12 @@ public class Order {
         this.customer = customer;
     }
 
-    public Collection<ProductionOrder> getProductionOrders() {
-        return productionOrders;
+    public Collection<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setProductionOrders(Collection<ProductionOrder> productionOrders) {
-        this.productionOrders = productionOrders;
+    public void setOrderItems(Collection<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     //endregion
@@ -79,9 +82,13 @@ public class Order {
         return result;
     }
 
-    public void addProductionOrder(ProductionOrder productionOrder) {
-        this.productionOrders.add(productionOrder);
-        productionOrder.setOrder(this);
+    /**
+     * Fügt dem Kundenauftrag eine Bestellposition hinzu und setzt den Kundenauftrag in der Bestellposition
+     * @param orderItem Bestellposition
+     */
+    public void addOrderItem(OrderItem orderItem) {
+        this.orderItems.add(orderItem);
+        orderItem.setOrder(this);
     }
 
 }

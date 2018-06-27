@@ -9,6 +9,9 @@ import javax.ejb.Stateless;
 import javax.inject.Named;
 import java.util.*;
 
+/**
+ * Kontroller zum Erstellen einer Statistik der Kundenaufträge
+ */
 @Named
 @Stateless
 public class OrderController {
@@ -16,6 +19,10 @@ public class OrderController {
     @EJB
     private OrderRepository orderRepository;
 
+    /**
+     * Gibt eine Map mit einem {@link Month} als Schlüssel und der Anzahl der Kundenaufträge in diesem Monat als {@link Integer} als Wert zurück
+     * @return
+     */
     public Map<Month, Integer> getMonthStatistics() {
 
         Map<Month, Integer> monthStatistics = new TreeMap<>();

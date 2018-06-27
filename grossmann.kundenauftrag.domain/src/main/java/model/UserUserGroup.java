@@ -3,6 +3,9 @@ package model;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Stellt die n:m-Beziehung zwischen {@link User} und {@link UserGroup} her
+ */
 @Entity
 @Table(name = "user_usergroup")
 public class UserUserGroup implements Serializable {
@@ -19,6 +22,8 @@ public class UserUserGroup implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_group_id", referencedColumnName = "user_group_id", nullable = false)
     private UserGroup userGroup;
+
+    //region Getters and Setters
 
     public int getId() {
         return id;
@@ -43,4 +48,6 @@ public class UserUserGroup implements Serializable {
     public void setUserGroup(UserGroup userGroup) {
         this.userGroup = userGroup;
     }
+
+    //endregion
 }

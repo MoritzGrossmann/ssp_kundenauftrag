@@ -10,6 +10,9 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Validator zum validieren einer E-Mail Adresse als String
+ */
 @FacesValidator("emailValidator")
 public class EmailValidator implements Validator {
 
@@ -22,6 +25,7 @@ public class EmailValidator implements Validator {
     public EmailValidator() {
         pattern = Pattern.compile(EMAIL_PATTERN);
     }
+
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         matcher = pattern.matcher(value.toString());

@@ -11,7 +11,7 @@ public class DatabaseCreator {
 
     private static final String ROOT_USER = "root";
 
-    private static final String ROOT_PASSWORD = "SSP2018";
+    private static final String ROOT_PASSWORD = "";
 
     private static final String CUSTOMER_USER = "customer";
 

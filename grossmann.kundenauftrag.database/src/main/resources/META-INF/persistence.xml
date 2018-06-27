@@ -5,10 +5,10 @@
     <persistence-unit name="customOrderDataPersistence" transaction-type="JTA">
         <jta-data-source>jdbc/customerOrder</jta-data-source>
         <class>model.Customer</class>
-        <class>model.ProductionOrder</class>
+        <class>model.OrderItem</class>
         <class>model.Order</class>
         <properties>
-            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="eclipselink.ddl-generation" value="none"/>
             <property name="eclipselink.ddl-generation.output-mode" value="database" />
             <property name="eclipselink.deploy-on-startup" value="true"/>
             <property name="eclipselink.target-server" value="Glassfish"/>

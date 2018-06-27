@@ -1,4 +1,4 @@
-package beans;
+package beans.order;
 
 import database.OrderRepository;
 import model.Order;
@@ -10,9 +10,12 @@ import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
-@ManagedBean(eager = true)
+/**
+ * Bean für die Kudenauftrag-Detailsansicht
+ */
+@ManagedBean
 @RequestScoped
-public class CustomerOrderBean implements Serializable {
+public class OrderDetailBean implements Serializable {
 
     @EJB
     private
@@ -26,6 +29,10 @@ public class CustomerOrderBean implements Serializable {
         return this.id;
     }
 
+    /**
+     * Setzt die Id aus dem Query-Parameter der View und lädt dem dazu gehörenden Kundenauftrag
+     * @param id Id des Kundenauftrages
+     */
     public void setId(int id) {
         this.id = id;
         this.order = orderRepository.getById(this.id);
