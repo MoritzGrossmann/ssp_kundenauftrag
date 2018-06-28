@@ -129,7 +129,9 @@ public class OrderResource {
 
             orderItemRepository.insert(orderItem);
 
-            return Response.status(Response.Status.OK).entity(new webservice.model.OrderItem(orderItem)).build();
+            webservice.model.OrderItem webOrderItem = new webservice.model.OrderItem(orderItem);
+
+            return Response.status(Response.Status.OK).entity(webOrderItem).build();
         } catch (NumberFormatException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(String.format("Cannot parse %s into a Number", orderId)).build();
         }

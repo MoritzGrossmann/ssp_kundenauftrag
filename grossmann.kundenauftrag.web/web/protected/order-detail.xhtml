@@ -81,11 +81,11 @@
 
                     <p:panel id="basic" header="#{msg.orderItem_add}" style="margin-bottom:20px; margin-top: 20px">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:outputLabel value="#{msg.productId}:" for="productId"/>
-                            <input id="productId" data-bind="value: productId" type="number"/>
+                            <p:outputLabel value="#{msg.productId}:"/>
+                            <input data-bind="value: productId" type="number"/>
 
-                            <p:outputLabel value="#{msg.count}:" for="count"/>
-                            <input id="count" data-bind="value: count" type="number"/>
+                            <p:outputLabel value="#{msg.count}:"/>
+                            <input data-bind="value: count" type="number"/>
                         </h:panelGrid>
                         <button data-bind="click: addOrderItem">
                             <h:outputText value="#{msg.save}"/>

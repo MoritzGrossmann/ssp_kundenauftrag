@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 /**
  * Bean für die Kudenauftrag-Detailsansicht
  */
-@ManagedBean
+@ManagedBean(name = "orderDetailBean")
 @RequestScoped
 public class OrderDetailBean implements Serializable {
 
