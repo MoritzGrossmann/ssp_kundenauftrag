@@ -1,15 +1,16 @@
 package beans.session;
 
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import java.io.Serializable;
 
 /**
  * Bean zum laden von Session-Spezifischen Daten
  */
 @Named
 @SessionScoped
-public class SessionBean{
+public class SessionBean implements Serializable {
 
     private String baseUrl;
 

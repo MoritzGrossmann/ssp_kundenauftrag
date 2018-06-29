@@ -19,14 +19,16 @@
         <ui:composition>
             <h:form>
                 <p:growl id="messages" showDetail="true"/>
-                <p:menubar styleClass="navbar">
+                <p:menubar styleClass="navbar" style="margin-bottom: 20px">
+                    <p:menuitem value="#{msg.home}" outcome="/index" icon="fa fa-home" />
+
                     <p:submenu label="#{msg.customer_name}" icon="ui-icon-pencil">
                         <p:menuitem value="#{msg.showall}" icon="fa fa-users" outcome="/protected/customer"/>
-                        <p:menuitem value="#{msg.create}" icon="fa fa-user-plus" outcome="/protected/customer-create"/>
+                        <p:menuitem value="#{msg.create}" icon="fa fa-user-plus" outcome="/protected/customer-create" rendered="#{request.isUserInRole('admin')}"/>
                     </p:submenu>
                     <p:submenu label="#{msg.order_name}" icon="ui-icon-pencil">
                         <p:menuitem value="#{msg.showall}" icon="fa fa-th-list" outcome="/protected/orders"/>
-                        <p:menuitem value="#{msg.create}" icon="ui-icon-pencil" outcome="/protected/order-create"/>
+                        <p:menuitem value="#{msg.create}" icon="ui-icon-pencil" outcome="/protected/order-create" rendered="#{request.isUserInRole('admin')}"/>
                     </p:submenu>
 
                     <p:menuitem value="#{msg.statistics}" outcome="/protected/chart" icon="fa fa-area-chart" />

@@ -55,7 +55,7 @@ public class OrderResource {
      */
     @Path("customer")
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     public Response getCustomerFromOrder(@PathParam("orderId") String orderId) {
         try {
             int id = Integer.parseInt(orderId);

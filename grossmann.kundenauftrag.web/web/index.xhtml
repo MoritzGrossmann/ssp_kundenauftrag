@@ -1,12 +1,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
-        xmlns:ui="http://java.sun.com/jsf/facelets"
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
->
+      xmlns:p="http://primefaces.org/ui">
 
 <h:body>
    <ui:composition template="shared/_layout.xhtml">
+      <ui:define name="content">
 
+         <p:toolbar style="margin-bottom: 10px">
+            <p:toolbarGroup align="left">
+               <p:outputLabel value="MES Kundenauftrag" />
+            </p:toolbarGroup>
+         </p:toolbar>
+
+         <p:fieldset legend="Vorwort" style="margin-bottom:20px">
+            <h:outputText value="In dieser Anwendung ist es möglich Kundendaten anzulegen, einzusehen, ändern und zu löschen.
+            das gleiche gilt für Kundenaufträge, welche jeweils einem Kunden zugeordnet sind.
+            Ein Kundenauftrag kann mehrere Auftragspositionen besitzen in Form von Produktnummer und . Die Oberfläche wurde mit Primefaces erstellt und auch einige spezifische Komponenten dessen verwendet."/>
+         </p:fieldset>
+
+         <p:fieldset legend="JPA Abfragen" style="margin-bottom:20px">
+            <h:outputText value="Zum filtern von Kunden in der Kundenlist (#{msg.customer_name} >> #{msg.showall}) werden ein Criteria-Query für den Nachname sowie ein JPQL-Query für den Vornamen benutzt.
+               Die Querys befinden sich in der Klasse CustomerRepository im Projekt grossmann.kundenauftrag.database im package database."/>
+         </p:fieldset>
+
+         <p:fieldset legend="Authentifizierung" style="margin-bottom:20px">
+            <h:outputText value="In dieser Applikation wird zwischen 2 Benutzern unterschieden.
+            Den admin und den user. Der user darf alles außer Kunden sowie Kundenaufträge anlegen, beziehungsweise löschen.
+            Die Homepage (index.xhtml) sowie die Login- und Error-Seite kann man ohne Authentifizierung aufrufen."/>
+         </p:fieldset>
+
+         <p:fieldset legend="Validierung" style="margin-bottom:20px">
+            <h:outputText value="Eingabenvalidierung wird beim Erstellen und Ändern bei Kunden sowie Kundenaufträgen durchgeführt.
+            Bei einem Kunden wird ein Vor- und Nachname sowie eine Valide E-Mail Adresse benötigt. Die E-Mail Adresse wird über einen FacesValidator validiert.
+            Bei einem Kundenauftrag muss ein Kunde sowie ein Datum angegeben sein."/>
+         </p:fieldset>
+
+         <p:fieldset legend="RESTful Webservice" style="margin-bottom:20px">
+            <h:outputText value="Der RESTful Webservice wird in der Detailansicht eines Kundenauftrages benutzt.
+                  Diese finden sie in dem sie in der Kundenliste (#{msg.customer_name} >> #{msg.showall}) einen Kunden anwählen und dann in diesem einen Kundenauftrag.
+                  Oder öffnen sie die Auftragsliste (#{msg.order_name} >> #{msg.showall}) und wählen sie einen Auftrag an. Es werden Kunde, Datum, Id sowie die Auftragspositionen eines Kundenauftrages per GET geladen.
+                  Es ist möglich per POST neue Auftragspositionen hinzuzufügen sowie mit DELETE zu löschen."/>
+         </p:fieldset>
+
+         <p:fieldset legend="Berechnung mit EJB" style="margin-bottom:20px">
+            <h:outputText value="Auf der Seite Statisitken wird eine Statistik über die Kundenaufträge pro Monat angelegt.
+            Hier werden alle Aufträge in einem Monat zusammengefasst und daraus ein Liniendiagramm erstellt."/>
+         </p:fieldset>
+      </ui:define>
    </ui:composition>
 </h:body>
 </html>

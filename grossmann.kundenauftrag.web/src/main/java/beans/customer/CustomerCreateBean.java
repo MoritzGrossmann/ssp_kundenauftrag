@@ -3,7 +3,6 @@ package beans.customer;
 import database.CustomerRepository;
 import model.Customer;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -20,7 +19,7 @@ public class CustomerCreateBean implements Serializable {
     private
     CustomerRepository customerRepository;
 
-    final ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+    private final ResourceBundle msgs = ResourceBundle.getBundle("internationalization.language", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
     //region Form-Parameter
 
@@ -137,7 +136,7 @@ public class CustomerCreateBean implements Serializable {
     //endregion
 
     public String getHeaderText() {
-        return this.id > 0 ? msgs.getString("customer_name_singular") + " " + this.id + msgs.getString("change")
+        return this.id > 0 ? msgs.getString("customer_name_singular") + " " + this.id + " " +  msgs.getString("change")
                 : msgs.getString("customer_add");
     }
 

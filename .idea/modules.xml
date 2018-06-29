@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/grossmann.kundenauftrag.program/grossmann-kundenauftrag-program.iml" filepath="$PROJECT_DIR$/grossmann.kundenauftrag.program/grossmann-kundenauftrag-program.iml" />
       <module fileurl="file://$PROJECT_DIR$/grossmann.kundenauftrag.database/grossmann.kundenauftrag.database.iml" filepath="$PROJECT_DIR$/grossmann.kundenauftrag.database/grossmann.kundenauftrag.database.iml" />
       <module fileurl="file://$PROJECT_DIR$/grossmann.kundenauftrag.domain/grossmann.kundenauftrag.domain.iml" filepath="$PROJECT_DIR$/grossmann.kundenauftrag.domain/grossmann.kundenauftrag.domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/grossmann.kundenauftrag.program/grossmann.kundenauftrag.program.iml" filepath="$PROJECT_DIR$/grossmann.kundenauftrag.program/grossmann.kundenauftrag.program.iml" />

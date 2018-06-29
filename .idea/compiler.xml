@@ -15,7 +15,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="grossmann-kundenauftrag-program" target="8" />
       <module name="grossmann.kundenauftrag.database" target="1.8" />
       <module name="grossmann.kundenauftrag.domain" target="1.8" />
       <module name="grossmann.kundenauftrag.program" target="8" />

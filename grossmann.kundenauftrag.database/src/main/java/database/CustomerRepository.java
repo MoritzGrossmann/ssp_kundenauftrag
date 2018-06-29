@@ -4,6 +4,7 @@ import model.Customer;
 
 import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -23,7 +24,7 @@ public class CustomerRepository extends GenericRepository<Customer> {
 
     /**
      * Lädt eine Liste von Kunden anhand von Vor- und Nachname
-     * @param parts Array von String mit parts[0] = Vorname und parts[1] = nachname
+     * @param parts Array von String
      * @return
      */
     public List<Customer> getByName(String[] parts) {
@@ -55,17 +56,12 @@ public class CustomerRepository extends GenericRepository<Customer> {
         return tq.getResultList();
     }
 
-    private List<Customer> getByFirstname(String firstname) {
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Customer> query = cb.createQuery(Customer.class);
-        Root<Customer> customerRoot = query.from(Customer.class);
-        query.where(
-                cb.like(
-                        customerRoot.<String>get("firstname"),
-                        cb.parameter(String.class, "likeCondition")));
 
-        TypedQuery<Customer> tq = getEntityManager().createQuery(query);
-        tq.setParameter("likeCondition", String.format("%%%s%%", firstname));
-        return tq.getResultList();
+    @SuppressWarnings("unchecked")
+    private List<Customer> getByFirstname(String firstname) {
+        String jpql = "SELECT c FROM Customer c WHERE c.firstname LIKE :firstname";
+        Query query = getEntityManager().createQuery(jpql);
+        query.setParameter("firstname", "%" + firstname + "%");
+        return query.getResultList();
     }
 }

@@ -9,6 +9,7 @@ import statistic.OrderController;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 @Named
+@RequestScoped
 public class ChartView implements Serializable {
 
     private LineChartModel dateModel;
