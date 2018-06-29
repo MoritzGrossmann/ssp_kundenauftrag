@@ -77,7 +77,7 @@
                 </p:dataTable>
 
 
-                    <p:panelGrid columns="3" cellPadding="5" styleClass="ui-noborder" rendered="#{request.isUserInRole('admin')}">
+                    <p:panelGrid columns="3" cellPadding="5" styleClass="ui-noborder">
                         <p:button outcome="customer-create" value="#{msg.edit}" icon="ui-icon-pencil">
                             <f:param name="id" value="#{customerDetailBean.id}" />
                         </p:button>
